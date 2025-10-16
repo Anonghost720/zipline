@@ -48,4 +48,10 @@ yarn-error.log*
 uploads*/
 *.crt
 *.key
+
+# docker setup
+get-docker.sh
+
+# personal documentation
+SETUP_COMPLETE.md
 src/prisma
