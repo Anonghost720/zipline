@@ -2,18 +2,18 @@ import { Response } from '@/lib/api/response';
 import { fetchApi } from '@/lib/fetchApi';
 import { useTitle } from '@/lib/hooks/useTitle';
 import {
-  Button,
-  Center,
-  Checkbox,
-  Divider,
-  Image,
-  LoadingOverlay,
-  Paper,
-  PasswordInput,
-  Stack,
-  Text,
-  TextInput,
-  Title,
+    Button,
+    Center,
+    Checkbox,
+    Divider,
+    Image,
+    LoadingOverlay,
+    Paper,
+    PasswordInput,
+    Stack,
+    Text,
+    TextInput,
+    Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications, showNotification } from '@mantine/notifications';
@@ -193,13 +193,13 @@ export function Component() {
               fontSize: `clamp(20px, ${Math.max(50 - (config.website.title?.length ?? 0) / 2, 20)}px, 50px)`,
             }}
           >
-            <b>{config.website.title ?? 'Zipline'}</b>
+            <b>{config.website.title ?? 'ShareHost'}</b>
           </Title>
         </div>
 
         {invite && (
           <Text ta='center' size='sm' c='dimmed'>
-            You’ve been invited to join <b>{config?.website?.title ?? 'Zipline'}</b>
+            You've been invited to join <b>{config?.website?.title ?? 'ShareHost'}</b>
             {invite.inviter && (
               <>
                 {' '}

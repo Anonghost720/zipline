@@ -2,6 +2,7 @@ import ExternalAuthButton from '@/components/pages/login/ExternalAuthButton';
 import { Response } from '@/lib/api/response';
 import { fetchApi } from '@/lib/fetchApi';
 import useLogin from '@/lib/hooks/useLogin';
+import { useTitle } from '@/lib/hooks/useTitle';
 import { authenticateWeb } from '@/lib/passkey';
 import {
   Button,
@@ -35,7 +36,6 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useSWR from 'swr';
 import GenericError from '../../error/GenericError';
-import { useTitle } from '@/lib/hooks/useTitle';
 
 export default function Login() {
   useTitle('Login');
@@ -290,7 +290,7 @@ export default function Login() {
                 )}px, 50px)`,
               }}
             >
-              <b>{config.website.title ?? 'Zipline'}</b>
+              <b>{config.website.title ?? 'ShareHost'}</b>
             </Title>
           </div>
 

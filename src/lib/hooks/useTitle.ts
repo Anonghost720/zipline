@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import useSWR from 'swr';
 import { Response } from '../api/response';
-import { useLocation } from 'react-router-dom';
 
 export function useTitle(title?: string) {
   const location = useLocation();
@@ -9,6 +9,6 @@ export function useTitle(title?: string) {
 
   useEffect(() => {
     if (!data || error || isLoading) return;
-    document.title = title ? `${data.website.title} – ${title}` : data.website.title || 'Zipline';
+    document.title = title ? `${data.website.title} – ${title}` : data.website.title || 'ShareHost';
   }, [title, location, data, isLoading]);
 }

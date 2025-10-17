@@ -1,10 +1,10 @@
 import { tmpdir } from 'os';
 import { join, resolve } from 'path';
 import { z } from 'zod';
+import { checkOutput, COMPRESS_TYPES } from '../compress';
 import { log } from '../logger';
 import { ParsedConfig } from './read';
 import { PROP_TO_ENV } from './read/env';
-import { checkOutput, COMPRESS_TYPES } from '../compress';
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -178,7 +178,7 @@ export const schema = z.object({
     length: z.number().default(8),
   }),
   website: z.object({
-    title: z.string().default('Zipline'),
+    title: z.string().default('ShareHost'),
     titleLogo: z.url().nullable().default(null),
     externalLinks: z
       .array(
@@ -328,9 +328,9 @@ export const schema = z.object({
   }),
   pwa: z.object({
     enabled: z.boolean().default(true),
-    title: z.string().default('Zipline'),
-    shortName: z.string().default('Zipline'),
-    description: z.string().default('Zipline'),
+    title: z.string().default('ShareHost'),
+    shortName: z.string().default('ShareHost'),
+    description: z.string().default('ShareHost'),
     themeColor: z.string().default('#000000'),
     backgroundColor: z.string().default('#000000'),
   }),

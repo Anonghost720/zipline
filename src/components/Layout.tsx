@@ -3,53 +3,52 @@ import type { SafeConfig } from '@/lib/config/safe';
 import { fetchApi } from '@/lib/fetchApi';
 import useAvatar from '@/lib/hooks/useAvatar';
 import useLogin from '@/lib/hooks/useLogin';
-import { Outlet, useLocation } from 'react-router-dom';
 import { isAdministrator } from '@/lib/role';
 import { useUserStore } from '@/lib/store/user';
 import {
-  AppShell,
-  Avatar,
-  Box,
-  Burger,
-  Button,
-  Divider,
-  Menu,
-  NavLink,
-  Paper,
-  ScrollArea,
-  Title,
-  useMantineColorScheme,
-  useMantineTheme,
+    AppShell,
+    Avatar,
+    Box,
+    Burger,
+    Button,
+    Divider,
+    Menu,
+    NavLink,
+    Paper,
+    ScrollArea,
+    Title,
+    useMantineColorScheme,
+    useMantineTheme,
 } from '@mantine/core';
 import { useClipboard } from '@mantine/hooks';
 import { useModals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
 import {
-  IconAdjustments,
-  IconChevronDown,
-  IconChevronRight,
-  IconClipboardCopy,
-  IconExternalLink,
-  IconFileText,
-  IconFileUpload,
-  IconFiles,
-  IconFolder,
-  IconGraph,
-  IconHome,
-  IconLink,
-  IconLogout,
-  IconRefreshDot,
-  IconSettingsFilled,
-  IconShieldLockFilled,
-  IconTags,
-  IconUpload,
-  IconUsersGroup,
+    IconAdjustments,
+    IconChevronDown,
+    IconChevronRight,
+    IconClipboardCopy,
+    IconExternalLink,
+    IconFileText,
+    IconFileUpload,
+    IconFiles,
+    IconFolder,
+    IconGraph,
+    IconHome,
+    IconLink,
+    IconLogout,
+    IconRefreshDot,
+    IconSettingsFilled,
+    IconShieldLockFilled,
+    IconTags,
+    IconUpload,
+    IconUsersGroup,
 } from '@tabler/icons-react';
 import { useState } from 'react';
+import { Link, Outlet, useLoaderData, useLocation } from 'react-router-dom';
+import { dashboardLoader } from '../client/routes';
 import ConfigProvider from './ConfigProvider';
 import VersionBadge from './VersionBadge';
-import { Link, useLoaderData } from 'react-router-dom';
-import { dashboardLoader } from '../client/routes';
 
 type NavLinks = {
   label: string;
@@ -235,7 +234,7 @@ export default function Layout() {
           />
 
           {config.website.titleLogo && (
-            <Avatar src={config.website.titleLogo} alt='Zipline logo' radius='sm' size='md' mr='md' />
+            <Avatar src={config.website.titleLogo} alt='ShareHost logo' radius='sm' size='md' mr='md' />
           )}
 
           <Title visibleFrom='sm' lineClamp={1} size={32}>

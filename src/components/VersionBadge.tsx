@@ -1,16 +1,16 @@
 import useVersion from '@/lib/hooks/useVersion';
 import {
-  Anchor,
-  Badge,
-  Button,
-  Flex,
-  Indicator,
-  Modal,
-  Paper,
-  Stack,
-  Text,
-  Title,
-  Tooltip,
+    Anchor,
+    Badge,
+    Button,
+    Flex,
+    Indicator,
+    Modal,
+    Paper,
+    Stack,
+    Text,
+    Title,
+    Tooltip,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
@@ -69,17 +69,17 @@ export default function VersionBadge() {
 
   return (
     <>
-      <Modal title='Zipline Version' opened={opened} onClose={close} size='lg'>
-        {version.isLatest && <Text>Running the latest version of Zipline.</Text>}
+      <Modal title='ShareHost Version' opened={opened} onClose={close} size='lg'>
+        {version.isLatest && <Text>Running the latest version of ShareHost.</Text>}
         {version.isUpstream && (
           <Text>
-            You are running an <b>unstable</b> version of Zipline. Upstream versions are not fully tested and
+            You are running an <b>unstable</b> version of ShareHost. Upstream versions are not fully tested and
             may contain bugs.
           </Text>
         )}
         {!version.isLatest && !version.isUpstream && version.isRelease && (
           <Text>
-            You are running an <b>outdated</b> version of Zipline. It is recommended to update to the{' '}
+            You are running an <b>outdated</b> version of ShareHost. It is recommended to update to the{' '}
             <Anchor href={version.latest.url}>latest version</Anchor>.
           </Text>
         )}

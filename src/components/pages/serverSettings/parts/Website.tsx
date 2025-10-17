@@ -26,7 +26,7 @@ export default function Website({
 
   const form = useForm({
     initialValues: {
-      websiteTitle: 'Zipline',
+      websiteTitle: 'ShareHost',
       websiteTitleLogo: '',
       websiteExternalLinks: JSON.stringify(defaultExternalLinks),
       websiteLoginBackground: '',
@@ -80,7 +80,7 @@ export default function Website({
     if (!data) return;
 
     form.setValues({
-      websiteTitle: data.settings.websiteTitle ?? 'Zipline',
+      websiteTitle: data.settings.websiteTitle ?? 'ShareHost',
       websiteTitleLogo: data.settings.websiteTitleLogo ?? '',
       websiteExternalLinks: JSON.stringify(
         data.settings.websiteExternalLinks ?? defaultExternalLinks,
@@ -108,7 +108,7 @@ export default function Website({
             <TextInput
               label='Title'
               description='The title of the website in browser tabs and at the top.'
-              placeholder='Zipline'
+              placeholder='ShareHost'
               {...form.getInputProps('websiteTitle')}
             />
           </Grid.Col>
