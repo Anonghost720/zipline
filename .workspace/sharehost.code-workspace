@@ -3,6 +3,10 @@
 		{
 			"name": "ShareHost",
 			"path": "..",
+		},
+		{
+			"name": "Nginx",
+			"path": "/etc/nginx/",
 		}
 	]
 }
