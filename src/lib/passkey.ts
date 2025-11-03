@@ -1,8 +1,8 @@
 import {
-  parseCreationOptionsFromJSON,
-  parseRequestOptionsFromJSON,
-  create,
-  get,
+    create,
+    get,
+    parseCreationOptionsFromJSON,
+    parseRequestOptionsFromJSON,
 } from '@github/webauthn-json/browser-ponyfill';
 import { User } from './db/models/user';
 import { randomCharacters } from './random';
