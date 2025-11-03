@@ -161,7 +161,7 @@ export default function Layout() {
     modals.openConfirmModal({
       title: 'Copy token?',
       children:
-        'Are you sure you want to copy your token? Your token can interact with all parts of Zipline. Do not share this token with anyone.',
+        'Are you sure you want to copy your token? Your token can interact with all parts of ShareHost. Do not share this token with anyone.',
       labels: { confirm: 'Copy', cancel: 'No, close this popup' },
       onConfirm: async () => {
         const { data, error } = await fetchApi<Response['/api/user/token']>('/api/user/token');

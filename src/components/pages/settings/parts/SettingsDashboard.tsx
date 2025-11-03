@@ -40,7 +40,7 @@ export default function SettingsDashboard() {
         <Group grow>
           <Switch
             label='Disable Media Preview'
-            description='Disable previews of files in the dashboard. This is useful to save data as Zipline, by default, will load previews of files.'
+            description='Disable previews of files in the dashboard. This is useful to save data as ShareHost, by default, will load previews of files.'
             checked={settings.disableMediaPreview}
             onChange={(event) => update('disableMediaPreview', event.currentTarget.checked)}
           />

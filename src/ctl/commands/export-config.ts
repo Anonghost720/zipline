@@ -68,7 +68,7 @@ export async function exportConfig({ yml, showDefaults }: { yml?: boolean; showD
     },
   });
   if (!ziplineTable) {
-    console.error('No Zipline configuration found in the database, run the setup again.');
+    console.error('No ShareHost configuration found in the database, run the setup again.');
     return;
   }
 

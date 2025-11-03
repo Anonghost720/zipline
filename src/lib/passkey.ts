@@ -11,7 +11,7 @@ export async function registerWeb(user: User) {
   const cro = parseCreationOptionsFromJSON({
     publicKey: {
       challenge: randomCharacters(64),
-      rp: { name: 'Zipline' },
+      rp: { name: 'ShareHost' },
       user: {
         id: randomCharacters(64),
         name: user.username,
