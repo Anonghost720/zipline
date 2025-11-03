@@ -32,6 +32,7 @@ export const reservedRoutes = [
   '/raw',
   '/invite',
   '/view',
+  '/dmca',
   '/robots.txt',
   '/manifest.json',
   '/favicon.ico',
