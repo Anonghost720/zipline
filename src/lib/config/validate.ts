@@ -170,9 +170,7 @@ export const schema = z.object({
       showUserSpecific: z.boolean().default(true),
     }),
     versionChecking: z.boolean().default(true),
-    versionAPI: z
-      .url()
-      .default('https://api.github.com/repos/Anonghost720/my-zipline/releases/latest'),
+    versionAPI: z.url().default('https://api.github.com/repos/Anonghost720/my-zipline/releases/latest'),
   }),
   domains: z.array(z.string()).default([]),
   invites: z.object({

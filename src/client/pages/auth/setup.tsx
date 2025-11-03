@@ -2,18 +2,18 @@ import { type Response } from '@/lib/api/response';
 import { fetchApi } from '@/lib/fetchApi';
 import { useTitle } from '@/lib/hooks/useTitle';
 import {
-    Anchor,
-    Button,
-    Code,
-    Group,
-    Paper,
-    PasswordInput,
-    SimpleGrid,
-    Stack,
-    Stepper,
-    Text,
-    TextInput,
-    Title,
+  Anchor,
+  Button,
+  Code,
+  Group,
+  Paper,
+  PasswordInput,
+  SimpleGrid,
+  Stack,
+  Stepper,
+  Text,
+  TextInput,
+  Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
@@ -129,17 +129,11 @@ export function Component() {
                 </Text>
 
                 <Stack mt='xs'>
-                  <LinkToDoc
-                    href='https://github.com/Anonghost720/my-zipline/wiki'
-                    title='Configuration'
-                  >
+                  <LinkToDoc href='https://github.com/Anonghost720/my-zipline/wiki' title='Configuration'>
                     Configuring ShareHost to your needs
                   </LinkToDoc>
 
-                  <LinkToDoc
-                    href='https://github.com/Anonghost720/my-zipline'
-                    title='GitHub Repository'
-                  >
+                  <LinkToDoc href='https://github.com/Anonghost720/my-zipline' title='GitHub Repository'>
                     Visit the ShareHost GitHub repository
                   </LinkToDoc>
                 </Stack>

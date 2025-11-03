@@ -1,16 +1,16 @@
 import useVersion from '@/lib/hooks/useVersion';
 import {
-    Anchor,
-    Badge,
-    Button,
-    Flex,
-    Indicator,
-    Modal,
-    Paper,
-    Stack,
-    Text,
-    Title,
-    Tooltip,
+  Anchor,
+  Badge,
+  Button,
+  Flex,
+  Indicator,
+  Modal,
+  Paper,
+  Stack,
+  Text,
+  Title,
+  Tooltip,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
@@ -147,7 +147,7 @@ export default function VersionBadge() {
               {version.latest.tag}
             </VersionButton>
 
-                        <VersionButton text='Update' href='https://github.com/Anonghost720/my-zipline/wiki'>
+            <VersionButton text='Update' href='https://github.com/Anonghost720/my-zipline/wiki'>
               Update Guide
             </VersionButton>
           </>

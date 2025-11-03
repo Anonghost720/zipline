@@ -1,15 +1,15 @@
 import { Response } from '@/lib/api/response';
 import {
-    Anchor,
-    Button,
-    LoadingOverlay,
-    NumberInput,
-    Paper,
-    Select,
-    SimpleGrid,
-    Switch,
-    TextInput,
-    Title,
+  Anchor,
+  Button,
+  LoadingOverlay,
+  NumberInput,
+  Paper,
+  Select,
+  SimpleGrid,
+  Switch,
+  TextInput,
+  Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconDeviceFloppy } from '@tabler/icons-react';
@@ -65,7 +65,9 @@ export default function Features({
       featuresMetricsAdminOnly: data.settings.featuresMetricsAdminOnly ?? false,
       featuresMetricsShowUserSpecific: data.settings.featuresMetricsShowUserSpecific ?? true,
       featuresVersionChecking: data.settings.featuresVersionChecking ?? true,
-      featuresVersionAPI: data.settings.featuresVersionAPI ?? 'https://api.github.com/repos/Anonghost720/my-zipline/releases/latest',
+      featuresVersionAPI:
+        data.settings.featuresVersionAPI ??
+        'https://api.github.com/repos/Anonghost720/my-zipline/releases/latest',
     });
   }, [data]);
 
@@ -169,11 +171,7 @@ export default function Features({
             description={
               <>
                 The URL of the version checking server. The default points to the ShareHost repository{' '}
-                <Anchor
-                  size='xs'
-                  href='https://github.com/Anonghost720/my-zipline'
-                  target='_blank'
-                >
+                <Anchor size='xs' href='https://github.com/Anonghost720/my-zipline' target='_blank'>
                   on GitHub
                 </Anchor>
                 .

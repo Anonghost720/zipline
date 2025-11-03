@@ -119,7 +119,7 @@ DATASOURCE_LOCAL_DIRECTORY=/path/to/your/local/files
 DATASOURCE_LOCAL_DIRECTORY=./relative/path/to/files
 ```
 
-> [!NOTE]  
+> [!NOTE]
 > Remember to change volume mappings in the docker-compose.yml file if you change this.
 
 ### Changing the port and hostname
