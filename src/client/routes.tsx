@@ -33,6 +33,7 @@ export const router = createBrowserRouter([
       {
         ErrorBoundary: RootErrorBoundary,
         children: [
+          { index: true, lazy: () => import('./pages/landing') },
           { path: '*', Component: FourOhFour },
           { path: '/dmca', lazy: () => import('./pages/auth/dmca') },
           {
