@@ -14,12 +14,12 @@ import {
 } from '@mantine/core';
 import { IconDownload, IconEyeFilled, IconGlobe, IconPercentage, IconWriting } from '@tabler/icons-react';
 import React, { useReducer, useState } from 'react';
+import { Link } from 'react-router-dom';
 import useSWR from 'swr';
 import { flameshot } from './generators/flameshot';
+import { ishare } from './generators/ishare';
 import { sharex } from './generators/sharex';
 import { shell } from './generators/shell';
-import { ishare } from './generators/ishare';
-import { Link } from 'react-router-dom';
 
 export type GeneratorOptions = {
   deletesAt: string | null;
@@ -317,7 +317,7 @@ export default function GeneratorButton({
           {isUnixLike && (
             <Text c='dimmed' size='sm'>
               If you are having trouble getting Flameshot to work on Wayland, consult the{' '}
-              <Anchor href='https://zipline.diced.sh/docs/guides/wayland'>Wayland guide</Anchor>.
+              <Anchor href='https://github.com/Anonghost720/my-zipline/wiki'>documentation</Anchor>.
             </Text>
           )}
 

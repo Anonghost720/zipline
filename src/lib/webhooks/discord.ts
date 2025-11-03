@@ -1,10 +1,10 @@
 import { z } from 'zod';
 import { Config, discordContent } from '../config/validate';
-import { ParseValue, parseString } from '../parser';
 import { File } from '../db/models/file';
+import { Url } from '../db/models/url';
 import { User } from '../db/models/user';
 import { log } from '../logger';
-import { Url } from '../db/models/url';
+import { ParseValue, parseString } from '../parser';
 import { parserMetrics } from '../parser/metrics';
 
 const logger = log('webhooks').c('discord');
@@ -68,8 +68,8 @@ export function parseContent(
       : null,
     avatarUrl:
       (config.discord?.avatarUrl ?? content.avatarUrl) ||
-      'https://raw.githubusercontent.com/diced/zipline/9b60147e112ec5b70170500b85c75ea621f41d03/public/zipline.png',
-    username: (config.discord?.username ?? content.username) || 'Zipline',
+      'https://raw.githubusercontent.com/Anonghost720/my-zipline/trunk/public/sharehost-logo.png',
+    username: (config.discord?.username ?? content.username) || 'ShareHost',
     webhookUrl: config.discord?.webhookUrl ?? content.webhookUrl,
     raw: value.link.raw || '{unknown_property}',
   };

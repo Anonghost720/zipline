@@ -2,18 +2,18 @@ import { type Response } from '@/lib/api/response';
 import { fetchApi } from '@/lib/fetchApi';
 import { useTitle } from '@/lib/hooks/useTitle';
 import {
-  Anchor,
-  Button,
-  Code,
-  Group,
-  Paper,
-  PasswordInput,
-  SimpleGrid,
-  Stack,
-  Stepper,
-  Text,
-  TextInput,
-  Title,
+    Anchor,
+    Button,
+    Code,
+    Group,
+    Paper,
+    PasswordInput,
+    SimpleGrid,
+    Stack,
+    Stepper,
+    Text,
+    TextInput,
+    Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications } from '@mantine/notifications';
@@ -129,12 +129,18 @@ export function Component() {
                 </Text>
 
                 <Stack mt='xs'>
-                  <LinkToDoc href='https://zipline.diced.sh/docs/config' title='Configuration'>
-                    Configuring Zipline to your needs
+                  <LinkToDoc
+                    href='https://github.com/Anonghost720/my-zipline/wiki'
+                    title='Configuration'
+                  >
+                    Configuring ShareHost to your needs
                   </LinkToDoc>
 
-                  <LinkToDoc href='https://zipline.diced.sh/docs/migrate' title='Migrate from v3 to v4'>
-                    Upgrading from a previous version of Zipline
+                  <LinkToDoc
+                    href='https://github.com/Anonghost720/my-zipline'
+                    title='GitHub Repository'
+                  >
+                    Visit the ShareHost GitHub repository
                   </LinkToDoc>
                 </Stack>
               </Paper>
@@ -154,12 +160,13 @@ export function Component() {
                 <Text>
                   To see all of the available environment variables, please refer to the documentation{' '}
                   <Anchor
-                    href='https://zipline.diced.sh/docs/config'
+                    href='https://github.com/Anonghost720/my-zipline/wiki'
                     target='_blank'
                     rel='noopener noreferrer'
                   >
-                    here.
+                    here
                   </Anchor>
+                  .
                 </Text>
               </Paper>
             </SimpleGrid>

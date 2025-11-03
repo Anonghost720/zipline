@@ -1,15 +1,15 @@
 import { Response } from '@/lib/api/response';
 import {
-  Anchor,
-  Button,
-  LoadingOverlay,
-  NumberInput,
-  Paper,
-  Select,
-  SimpleGrid,
-  Switch,
-  TextInput,
-  Title,
+    Anchor,
+    Button,
+    LoadingOverlay,
+    NumberInput,
+    Paper,
+    Select,
+    SimpleGrid,
+    Switch,
+    TextInput,
+    Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { IconDeviceFloppy } from '@tabler/icons-react';
@@ -39,7 +39,7 @@ export default function Features({
       featuresMetricsAdminOnly: false,
       featuresMetricsShowUserSpecific: true,
       featuresVersionChecking: true,
-      featuresVersionAPI: 'https://zipline-version.diced.sh/',
+      featuresVersionAPI: 'https://api.github.com/repos/Anonghost720/my-zipline/releases/latest',
     },
     enhanceGetInputProps: (payload) => ({
       disabled: data?.tampered?.includes(payload.field) || false,
@@ -65,7 +65,7 @@ export default function Features({
       featuresMetricsAdminOnly: data.settings.featuresMetricsAdminOnly ?? false,
       featuresMetricsShowUserSpecific: data.settings.featuresMetricsShowUserSpecific ?? true,
       featuresVersionChecking: data.settings.featuresVersionChecking ?? true,
-      featuresVersionAPI: data.settings.featuresVersionAPI ?? 'https://zipline-version.diced.sh/',
+      featuresVersionAPI: data.settings.featuresVersionAPI ?? 'https://api.github.com/repos/Anonghost720/my-zipline/releases/latest',
     });
   }, [data]);
 
@@ -168,18 +168,18 @@ export default function Features({
             label='Version API URL'
             description={
               <>
-                The URL of the version checking server. The default is{' '}
-                <Anchor size='xs' href='zipline-version.diced.sh' target='_blank'>
-                  https://zipline-version.diced.sh
+                The URL of the version checking server. The default points to the ShareHost repository{' '}
+                <Anchor
+                  size='xs'
+                  href='https://github.com/Anonghost720/my-zipline'
+                  target='_blank'
+                >
+                  on GitHub
                 </Anchor>
-                . Visit the{' '}
-                <Anchor size='xs' href='https://github.com/diced/zipline-version-worker' target='_blank'>
-                  GitHub
-                </Anchor>{' '}
-                to host your own version checking server.
+                .
               </>
             }
-            placeholder='https://zipline-version.diced.sh/'
+            placeholder='https://api.github.com/repos/Anonghost720/my-zipline/releases/latest'
             {...form.getInputProps('featuresVersionAPI')}
           />
         </SimpleGrid>

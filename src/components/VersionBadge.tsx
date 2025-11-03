@@ -1,16 +1,16 @@
 import useVersion from '@/lib/hooks/useVersion';
 import {
-  Anchor,
-  Badge,
-  Button,
-  Flex,
-  Indicator,
-  Modal,
-  Paper,
-  Stack,
-  Text,
-  Title,
-  Tooltip,
+    Anchor,
+    Badge,
+    Button,
+    Flex,
+    Indicator,
+    Modal,
+    Paper,
+    Stack,
+    Text,
+    Title,
+    Tooltip,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
@@ -101,12 +101,12 @@ export default function VersionBadge() {
             {
               label: 'Version',
               value: version.version.tag!,
-              href: `https://github.com/diced/zipline/releases/${version.version.tag}`,
+              href: `https://github.com/Anonghost720/my-zipline/releases/${version.version.tag}`,
             },
             {
               label: 'Commit',
               value: version.version.sha!,
-              href: `https://github.com/diced/zipline/commit/${version.version.sha}`,
+              href: `https://github.com/Anonghost720/my-zipline/commit/${version.version.sha}`,
             },
             { label: 'Upstream?', value: version.isUpstream ? 'Yes' : 'No' },
           ]}
@@ -126,7 +126,7 @@ export default function VersionBadge() {
                 {
                   label: 'Commit',
                   value: version.latest.commit.sha!.slice(0, 7)!,
-                  href: `https://github.com/diced/zipline/commit/${version.latest.commit.sha}`,
+                  href: `https://github.com/Anonghost720/my-zipline/commit/${version.latest.commit.sha}`,
                 },
                 {
                   label: 'Available to update',
@@ -147,8 +147,8 @@ export default function VersionBadge() {
               {version.latest.tag}
             </VersionButton>
 
-            <VersionButton text='Update' href='https://zipline.diced.sh/docs/get-started/docker#updating'>
-              {version.latest.tag}
+                        <VersionButton text='Update' href='https://github.com/Anonghost720/my-zipline/wiki'>
+              Update Guide
             </VersionButton>
           </>
         )}

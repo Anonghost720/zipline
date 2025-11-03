@@ -44,7 +44,7 @@ BigInt.prototype.toJSON = function () {
 
 async function main() {
   const argv = process.argv.slice(2);
-  logger.info('starting zipline', { mode: MODE, version: version, argv });
+  logger.info('starting sharehost', { mode: MODE, version: version, argv });
 
   if (!process.env.DATABASE_URL) {
     logger.error('DATABASE_URL not set, exiting...');

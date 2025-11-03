@@ -64,14 +64,14 @@ model Zipline {
   featuresMetricsShowUserSpecific Boolean @default(true)
 
   featuresVersionChecking Boolean @default(true)
-  featuresVersionAPI      String @default("https://zipline-version.diced.sh")
+  featuresVersionAPI      String @default("https://api.github.com/repos/Anonghost720/my-zipline/releases/latest")
 
   invitesEnabled Boolean @default(true)
   invitesLength  Int     @default(6)
 
   websiteTitle               String  @default("Zipline")
   websiteTitleLogo           String?
-  websiteExternalLinks       Json    @default("[{ \"name\": \"GitHub\", \"url\": \"https://github.com/diced/zipline\"}, { \"name\": \"Documentation\", \"url\": \"https://zipline.diced.sh/\"}]")
+  websiteExternalLinks       Json    @default("[{ \"name\": \"GitHub\", \"url\": \"https://github.com/Anonghost720/my-zipline\"}, { \"name\": \"Documentation\", \"url\": \"https://github.com/Anonghost720/my-zipline/wiki\"}]")
   websiteLoginBackground     String?
   websiteLoginBackgroundBlur Boolean @default(true)
   websiteDefaultAvatar       String?

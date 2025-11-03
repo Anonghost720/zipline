@@ -170,7 +170,9 @@ export const schema = z.object({
       showUserSpecific: z.boolean().default(true),
     }),
     versionChecking: z.boolean().default(true),
-    versionAPI: z.url().default('https://zipline-version.diced.sh/'),
+    versionAPI: z
+      .url()
+      .default('https://api.github.com/repos/Anonghost720/my-zipline/releases/latest'),
   }),
   domains: z.array(z.string()).default([]),
   invites: z.object({
@@ -190,11 +192,11 @@ export const schema = z.object({
       .default([
         {
           name: 'GitHub',
-          url: 'https://github.com/diced/zipline',
+          url: 'https://github.com/Anonghost720/my-zipline',
         },
         {
           name: 'Documentation',
-          url: 'https://zipline.diced.sh',
+          url: 'https://github.com/Anonghost720/my-zipline/wiki',
         },
       ]),
     loginBackground: z.url().nullable().default(null),
@@ -225,7 +227,7 @@ export const schema = z.object({
   mfa: z.object({
     totp: z.object({
       enabled: z.boolean().default(false),
-      issuer: z.string().default('Zipline'),
+      issuer: z.string().default('ShareHost'),
     }),
     passkeys: z.boolean().default(true),
   }),

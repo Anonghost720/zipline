@@ -1,16 +1,17 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/diced/zipline/trunk/public/zipline_small.png"/>
+  <img src="https://raw.githubusercontent.com/Anonghost720/my-zipline/trunk/public/sharehost-logo.png"/>
+
+# ShareHost
 
 The next generation ShareX / File upload server
 
-![Stars](https://img.shields.io/github/stars/diced/zipline?logo=github&style=for-the-badge)
-![Version](https://img.shields.io/github/package-json/v/diced/zipline?logo=git&logoColor=white&style=for-the-badge)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/diced/zipline/trunk?logo=git&logoColor=white&style=for-the-badge)
-[![Discord](https://img.shields.io/discord/729771078196527176?color=%23777ed3&label=discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/EAhCRfGxCF)
+![Stars](https://img.shields.io/github/stars/Anonghost720/my-zipline?logo=github&style=for-the-badge)
+![Version](https://img.shields.io/github/package-json/v/Anonghost720/my-zipline?logo=git&logoColor=white&style=for-the-badge)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Anonghost720/my-zipline/trunk?logo=git&logoColor=white&style=for-the-badge)
 
-![Build](https://img.shields.io/github/actions/workflow/status/diced/zipline/build.yml?logo=github&style=for-the-badge&branch=trunk)
+![Build](https://img.shields.io/github/actions/workflow/status/Anonghost720/my-zipline/build.yml?logo=github&style=for-the-badge&branch=trunk)
 
-Documentation: [zipline.diced.sh](https://zipline.diced.sh)
+Documentation: [GitHub Wiki](https://github.com/Anonghost720/my-zipline/wiki)
 
 </div>
 
@@ -41,11 +42,11 @@ Documentation: [zipline.diced.sh](https://zipline.diced.sh)
 
 # Usage
 
-Visit [the docs](https://zipline.diced.sh/docs/get-started/docker) for a more in-depth guide on how to get started.
+Visit [the GitHub wiki](https://github.com/Anonghost720/my-zipline/wiki) for a more in-depth guide on how to get started.
 
 ## Install and Run with Docker
 
-This is the recommended way to run Zipline:
+This is the recommended way to run ShareHost:
 
 ```yml
 services:
@@ -55,25 +56,27 @@ services:
     env_file:
       - .env
     environment:
-      POSTGRES_USER: ${POSTGRESQL_USER:-zipline}
+      POSTGRES_USER: ${POSTGRESQL_USER:-sharehost}
       POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD:?POSTGRESSQL_PASSWORD is required}
-      POSTGRES_DB: ${POSTGRESQL_DB:-zipline}
+      POSTGRES_DB: ${POSTGRESQL_DB:-sharehost}
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD', 'pg_isready', '-U', 'zipline']
+      test: ['CMD', 'pg_isready', '-U', 'sharehost']
       interval: 10s
       timeout: 5s
       retries: 5
 
-  zipline:
-    image: ghcr.io/diced/zipline
+  sharehost:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - '3000:3000'
     env_file:
       - .env
     environment:
-      - DATABASE_URL=postgres://${POSTGRESQL_USER:-zipline}:${POSTGRESQL_PASSWORD}@postgresql:5432/${POSTGRESQL_DB:-zipline}
+      - DATABASE_URL=postgres://${POSTGRESQL_USER:-sharehost}:${POSTGRESQL_PASSWORD}@postgresql:5432/${POSTGRESQL_DB:-sharehost}
     depends_on:
       postgresql:
         condition: service_healthy
@@ -104,11 +107,11 @@ echo "POSTGRESQL_PASSWORD=$(openssl rand -base64 42 | tr -dc A-Za-z0-9 | cut -c 
 echo "CORE_SECRET=$(openssl rand -base64 42 | tr -dc A-Za-z0-9 | cut -c -32 | tr -d '\n')" >> .env
 ```
 
-Without the `CORE_SECRET` environment variable, Zipline will not start.
+Without the `CORE_SECRET` environment variable, ShareHost will not start.
 
 ### Changing where uploads are stored
 
-By default, Zipline will default to the `./uploads` folder, which is also reflected in the `docker-compose.yml` above. If you want to change this, you can set the `DATASOURCE_LOCAL_DIRECTORY` environment variable to a different path.
+By default, ShareHost will default to the `./uploads` folder, which is also reflected in the `docker-compose.yml` above. If you want to change this, you can set the `DATASOURCE_LOCAL_DIRECTORY` environment variable to a different path.
 
 ```bash
 DATASOURCE_LOCAL_DIRECTORY=/path/to/your/local/files
@@ -121,7 +124,7 @@ DATASOURCE_LOCAL_DIRECTORY=./relative/path/to/files
 
 ### Changing the port and hostname
 
-By default, Zipline binds to `0.0.0.0:3000`, which is also reflected in the `docker-compose.yml` above. If you want to change this, you can set the `CORE_PORT` and `CORE_HOSTNAME` environment variables to a different port and hostname.
+By default, ShareHost binds to `0.0.0.0:3000`, which is also reflected in the `docker-compose.yml` above. If you want to change this, you can set the `CORE_PORT` and `CORE_HOSTNAME` environment variables to a different port and hostname.
 
 ```bash
 CORE_PORT=80
@@ -140,13 +143,13 @@ DATASOURCE_TYPE=s3
 
 DATASOURCE_S3_ACCESS_KEY_ID=access_key_id
 DATASOURCE_S3_SECRET_ACCESS_KEY=secret
-DATASOURCE_S3_BUCKET=zipline
+DATASOURCE_S3_BUCKET=sharehost
 DATASOURCE_S3_REGION=us-west-2
 ```
 
-For more information, like other providers, see the [docs](https://zipline.diced.sh/docs/config/datasource#s3-datasource).
+For more information, like other providers, see the [GitHub wiki](https://github.com/Anonghost720/my-zipline/wiki).
 
-### Starting Zipline
+### Starting ShareHost
 
 Simply run the following command to start the server:
 
@@ -158,13 +161,7 @@ You should be able to access the website at `http://localhost:3000` or the port 
 
 ## Manual Install
 
-See [docs](https://zipline.diced.sh/docs/get-started/source) for more information.
-
-# Migrating from v3
-
-Zipline v4 was a complete rewrite, and as such, there is no upgrade path from v3 to v4. You will need to export your data from v3 and import it into v4. This process is made easier by the fact that v4 has a built-in importer to import data from v3.
-
-See [migration](https://zipline.diced.sh/docs/migrate) for more information.
+See [GitHub wiki](https://github.com/Anonghost720/my-zipline/wiki) for more information.
 
 # Contributing
 
@@ -175,8 +172,8 @@ Contributions of any kind are welcome, whether they are bug reports, pull reques
 Create an issue on GitHub and use the template, please include the following (if one of them is not applicable to the issue then it's not needed):
 
 - The steps to reproduce the bug
-- Logs of Zipline
-- The version of Zipline, and whether or not you are using Docker (include the image digest/tag if possible)
+- Logs of ShareHost
+- The version of ShareHost, and whether or not you are using Docker (include the image digest/tag if possible)
 - Your OS & Browser including server OS
 - What you were expecting to see
 - How it can be fixed (if you know)
@@ -194,7 +191,7 @@ Create a pull request on GitHub. If your PR does not pass the action checks, the
 
 ### Development
 
-Here's how to setup Zipline for development
+Here's how to setup ShareHost for development
 
 #### Nix
 
