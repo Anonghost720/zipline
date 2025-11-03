@@ -42,11 +42,11 @@ export function Component() {
   const [settings, setSettings] = useState<PublicSettings | null>(null);
 
   useEffect(() => {
-    // Check if user is already logged in
-    fetch('/api/user')
+    // Check if user is already logged in by checking settings endpoint
+    fetch('/api/server/settings/web')
       .then((res) => {
         if (res.ok) {
-          // User is logged in, redirect to dashboard
+          // User is logged in and has valid session, redirect to dashboard
           navigate('/dashboard');
         }
       })
