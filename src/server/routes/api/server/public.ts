@@ -22,6 +22,7 @@ export type ApiServerPublicResponse = {
     loginBackgroundBlur?: boolean;
     title?: string;
     tos: boolean;
+    dmca: boolean;
   };
   features: {
     oauthRegistration: boolean;
@@ -34,6 +35,7 @@ export type ApiServerPublicResponse = {
     passkeys: boolean;
   };
   tos?: string | null;
+  dmca?: string | null;
   files: {
     maxFileSize: string;
     defaultFormat: Config['files']['defaultFormat'];
@@ -46,6 +48,7 @@ export type ApiServerPublicResponse = {
 const logger = log('api').c('server').c('public');
 
 let tosCache: string | null = null;
+let dmcaCache: string | null = null;
 
 export const PATH = '/api/server/public';
 export default fastifyPlugin(
@@ -64,6 +67,7 @@ export default fastifyPlugin(
           loginBackgroundBlur: config.website.loginBackgroundBlur,
           title: config.website.title,
           tos: config.website.tos !== undefined,
+          dmca: config.website.dmca !== undefined,
         },
         features: {
           oauthRegistration: config.features.oauthRegistration,
@@ -94,6 +98,18 @@ export default fastifyPlugin(
           response.tos = tosCache;
         } catch {
           response.tos = null;
+        }
+      }
+
+      if (config.website.dmca) {
+        try {
+          if (dmcaCache === null) {
+            const dmca = await readFile(config.website.dmca, 'utf8');
+            dmcaCache = dmca;
+          }
+          response.dmca = dmcaCache;
+        } catch {
+          response.dmca = null;
         }
       }
 

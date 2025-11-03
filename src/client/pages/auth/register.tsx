@@ -199,7 +199,7 @@ export function Component() {
 
         {invite && (
           <Text ta='center' size='sm' c='dimmed'>
-            You've been invited to join <b>{config?.website?.title ?? 'ShareHost'}</b>
+            You&apos;ve been invited to join <b>{config?.website?.title ?? 'ShareHost'}</b>
             {invite.inviter && (
               <>
                 {' '}

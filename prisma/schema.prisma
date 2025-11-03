@@ -76,6 +76,7 @@ model Zipline {
   websiteLoginBackgroundBlur Boolean @default(true)
   websiteDefaultAvatar       String?
   websiteTos                 String?
+  websiteDmca                String?
 
   websiteThemeDefault String @default("system")
   websiteThemeDark    String @default("builtin:dark_gray")

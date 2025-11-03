@@ -1,6 +1,6 @@
 import { log } from '@/lib/logger';
-import { parse } from './transform';
 import { readFileSync } from 'node:fs';
+import { parse } from './transform';
 
 export type EnvType = 'string' | 'string[]' | 'number' | 'boolean' | 'byte' | 'ms' | 'json';
 export function env(property: string, env: string | string[], type: EnvType, isDb: boolean = false) {
@@ -94,6 +94,7 @@ export const ENVS = [
   env('website.loginBackgroundBlur', 'WEBSITE_LOGIN_BACKGROUND_BLUR', 'number', true),
   env('website.defaultAvatar', 'WEBSITE_DEFAULT_AVATAR', 'string', true),
   env('website.tos', 'WEBSITE_TOS', 'string', true),
+  env('website.dmca', 'WEBSITE_DMCA', 'string', true),
   env('website.theme.default', 'WEBSITE_THEME_DEFAULT', 'string', true),
   env('website.theme.dark', 'WEBSITE_THEME_DARK', 'string', true),
   env('website.theme.light', 'WEBSITE_THEME_LIGHT', 'string', true),

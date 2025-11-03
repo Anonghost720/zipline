@@ -62,6 +62,7 @@ export const DATABASE_TO_PROP = {
   websiteLoginBackgroundBlur: 'website.loginBackgroundBlur',
   websiteDefaultAvatar: 'website.defaultAvatar',
   websiteTos: 'website.tos',
+  websiteDmca: 'website.dmca',
 
   domains: 'domains',
 

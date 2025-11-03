@@ -124,7 +124,9 @@ export function Component() {
             <SimpleGrid spacing='md' cols={{ base: 1, sm: 1 }}>
               <Paper withBorder p='sm' my='sm' h='100%'>
                 <Title order={2}>Documentation</Title>
-                <Text>Here are a couple of useful documentation links to get you started with ShareHost:</Text>
+                <Text>
+                  Here are a couple of useful documentation links to get you started with ShareHost:
+                </Text>
 
                 <Stack mt='xs'>
                   <LinkToDoc href='https://zipline.diced.sh/docs/config' title='Configuration'>
@@ -141,8 +143,8 @@ export function Component() {
                 <Title order={2}>Configuration</Title>
 
                 <Text>
-                  Most of ShareHost&apos;s configuration is now managed through the dashboard. Once you login as
-                  a super-admin, you can click on your username in the top right corner and select
+                  Most of ShareHost&apos;s configuration is now managed through the dashboard. Once you login
+                  as a super-admin, you can click on your username in the top right corner and select
                   &quot;Server Settings&quot; to configure your instance. The only exception to this is a few
                   sensitive environment variables that must be set in order for ShareHost to run. To change
                   this, depending on the setup, you can either edit the <Code>.env</Code> or{' '}

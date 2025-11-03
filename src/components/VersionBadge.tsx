@@ -1,16 +1,16 @@
 import useVersion from '@/lib/hooks/useVersion';
 import {
-    Anchor,
-    Badge,
-    Button,
-    Flex,
-    Indicator,
-    Modal,
-    Paper,
-    Stack,
-    Text,
-    Title,
-    Tooltip,
+  Anchor,
+  Badge,
+  Button,
+  Flex,
+  Indicator,
+  Modal,
+  Paper,
+  Stack,
+  Text,
+  Title,
+  Tooltip,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
@@ -73,8 +73,8 @@ export default function VersionBadge() {
         {version.isLatest && <Text>Running the latest version of ShareHost.</Text>}
         {version.isUpstream && (
           <Text>
-            You are running an <b>unstable</b> version of ShareHost. Upstream versions are not fully tested and
-            may contain bugs.
+            You are running an <b>unstable</b> version of ShareHost. Upstream versions are not fully tested
+            and may contain bugs.
           </Text>
         )}
         {!version.isLatest && !version.isUpstream && version.isRelease && (

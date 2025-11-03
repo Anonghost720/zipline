@@ -215,6 +215,12 @@ export const schema = z.object({
       .refine((v) => (v ? v.endsWith('.md') : true))
       .nullable()
       .default(null),
+    dmca: z
+      .string()
+      .transform((s) => resolve(s))
+      .refine((v) => (v ? v.endsWith('.md') : true))
+      .nullable()
+      .default(null),
   }),
   mfa: z.object({
     totp: z.object({

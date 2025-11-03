@@ -232,6 +232,17 @@ export default fastifyPlugin(
                   return false;
                 }
               }, 'File does not exist'),
+            websiteDmca: z
+              .string()
+              .nullable()
+              .refine((input) => !input || input.endsWith('.md'), 'File is not a markdown file')
+              .refine((input) => {
+                try {
+                  return !input || statSync(input).isFile();
+                } catch {
+                  return false;
+                }
+              }, 'File does not exist'),
 
             websiteThemeDefault: z.enum(['system', ...themes]),
             websiteThemeDark: z.enum(themes as unknown as readonly [string, ...string[]]),

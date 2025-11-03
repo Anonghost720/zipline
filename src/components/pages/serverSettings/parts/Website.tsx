@@ -33,6 +33,7 @@ export default function Website({
       websiteLoginBackgroundBlur: true,
       websiteDefaultAvatar: '',
       websiteTos: '',
+      websiteDmca: '',
 
       websiteThemeDefault: 'system',
       websiteThemeDark: 'builtin:dark_gray',
@@ -65,6 +66,7 @@ export default function Website({
     sendValues.websiteDefaultAvatar =
       values.websiteDefaultAvatar.trim() === '' ? null : values.websiteDefaultAvatar.trim();
     sendValues.websiteTos = values.websiteTos.trim() === '' ? null : values.websiteTos.trim();
+    sendValues.websiteDmca = values.websiteDmca.trim() === '' ? null : values.websiteDmca.trim();
 
     sendValues.websiteThemeDefault = values.websiteThemeDefault.trim();
     sendValues.websiteThemeDark = values.websiteThemeDark.trim();
@@ -91,6 +93,7 @@ export default function Website({
       websiteLoginBackgroundBlur: data.settings.websiteLoginBackgroundBlur ?? true,
       websiteDefaultAvatar: data.settings.websiteDefaultAvatar ?? '',
       websiteTos: data.settings.websiteTos ?? '',
+      websiteDmca: data.settings.websiteDmca ?? '',
       websiteThemeDefault: data.settings.websiteThemeDefault ?? 'system',
       websiteThemeDark: data.settings.websiteThemeDark ?? 'builtin:dark_gray',
       websiteThemeLight: data.settings.websiteThemeLight ?? 'builtin:light_gray',
@@ -167,6 +170,15 @@ export default function Website({
               description='Path to a Markdown (.md) file to use for the terms of service.'
               placeholder='/zipline/TOS.md'
               {...form.getInputProps('websiteTos')}
+            />
+          </Grid.Col>
+
+          <Grid.Col span={{ base: 12, md: 6 }}>
+            <TextInput
+              label='DMCA Policy'
+              description='Path to a Markdown (.md) file to use for the DMCA policy.'
+              placeholder='/zipline/DMCA.md'
+              {...form.getInputProps('websiteDmca')}
             />
           </Grid.Col>
 

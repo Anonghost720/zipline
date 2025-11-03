@@ -45,6 +45,7 @@ export const router = createBrowserRouter([
                 lazy: () => import('./pages/auth/setup'),
               },
               { path: 'tos', lazy: () => import('./pages/auth/tos') },
+              { path: 'dmca', lazy: () => import('./pages/auth/dmca') },
             ],
           },
           {
