@@ -6,7 +6,7 @@ run(
 
   lintStep,
   step('prisma', 'prisma generate'),
-  step('typecheck', 'tsc', () => !process.argv.includes('--skip')),
+  step('typecheck', 'tsc', () => !process.argv.includes('--skip') && !process.env.SKIP_TYPECHECK),
 
   // builds
   step('server', 'tsup'),

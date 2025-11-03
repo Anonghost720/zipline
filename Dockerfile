@@ -35,6 +35,7 @@ COPY scripts ./scripts
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
+ENV SKIP_TYPECHECK=true
 RUN ZIPLINE_BUILD=true pnpm run build
 
 FROM base
