@@ -120,7 +120,7 @@ export default function Export3Details({ export3 }: { export3: Export3 }) {
             <Stack gap={2}>
               <TextDetail name='Export Version'>{export3.versions.export}</TextDetail>
               <TextDetail name='Node'>{export3.versions.node}</TextDetail>
-              <TextDetail name='Zipline'>v{export3.versions.zipline}</TextDetail>
+              <TextDetail name='ShareHost'>v{export3.versions.zipline}</TextDetail>
             </Stack>
           </Accordion.Panel>
         </Accordion.Item>

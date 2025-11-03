@@ -1,19 +1,19 @@
 import { Command } from 'commander';
 import { version } from '../../package.json';
+import { exportConfig } from './commands/export-config';
+import { importDir } from './commands/import-dir';
 import { listUsers } from './commands/list-users';
 import { readConfig } from './commands/read-config';
 import { setUser } from './commands/set-user';
-import { importDir } from './commands/import-dir';
-import { exportConfig } from './commands/export-config';
 
 const cli = new Command();
 
-cli.name('ziplinectl').version(version).description('controll utility for zipline');
+cli.name('ziplinectl').version(version).description('controll utility for ShareHost');
 
 cli
   .command('read-config')
   .option('-f, --format', 'whether or not to format the json')
-  .summary('output the configuration as json, exactly how Zipline sees it')
+  .summary('output the configuration as json, exactly how ShareHost sees it')
   .action(readConfig);
 
 cli
@@ -43,7 +43,7 @@ cli
   .option('--skip-db', 'do not add the files to the database')
   .option('--skip-ds', 'do not add the files to the datasource')
   .option('-f, --folder [folder_id]', 'an optional folder to add the files to')
-  .argument('<directory>', 'the directory to import into Zipline')
+  .argument('<directory>', 'the directory to import into ShareHost')
   .action(importDir);
 
 cli

@@ -86,7 +86,7 @@ export default function PWA({
         <Switch
           mt='md'
           label='PWA Enabled'
-          description='Allow users to install the Zipline PWA on their devices.'
+          description='Allow users to install the sharehost PWA on their devices.'
           {...form.getInputProps('pwaEnabled', { type: 'checkbox' })}
         />
 
@@ -94,21 +94,21 @@ export default function PWA({
           <TextInput
             label='Title'
             description='The title for the PWA'
-            placeholder='Zipline'
+            placeholder='sharehost'
             {...form.getInputProps('pwaTitle')}
           />
 
           <TextInput
             label='Short Name'
             description='The short name for the PWA'
-            placeholder='Zipline'
+            placeholder='sharehost'
             {...form.getInputProps('pwaShortName')}
           />
 
           <TextInput
             label='Description'
             description='The description for the PWA'
-            placeholder='Zipline'
+            placeholder='sharehost'
             {...form.getInputProps('pwaDescription')}
           />
 

@@ -48,7 +48,7 @@ export default function ImportButton() {
       showNotification({
         title: 'There were errors with the import',
         message:
-          "Zipline couldn't validate the import data. Are you sure it's a valid export from Zipline v3? For more details about the error, check the browser console.",
+          "ShareHost couldn't validate the import data. Are you sure it's a valid export from ShareHost v3? For more details about the error, check the browser console.",
         color: 'red',
         icon: <IconDatabaseOff size='1rem' />,
         autoClose: 10000,
@@ -102,7 +102,7 @@ export default function ImportButton() {
     modals.openConfirmModal({
       title: 'Are you sure?',
       children:
-        'This process will NOT overwrite existing data but will append to it. In case of conflicts, the imported data will be skipped and logged. If using a version 3 export, the entire importing process should be completed immediately after setting up Zipline.',
+        'This process will NOT overwrite existing data but will append to it. In case of conflicts, the imported data will be skipped and logged. If using a version 3 export, the entire importing process should be completed immediately after setting up ShareHost.',
       labels: {
         cancel: 'Cancel',
         confirm: 'Import Data',
@@ -142,7 +142,7 @@ export default function ImportButton() {
             title: 'Failed to import data',
             message:
               error.error ??
-              'An error occurred while importing data. Check the Zipline logs for more details.',
+              'An error occurred while importing data. Check the ShareHost logs for more details.',
             color: 'red',
             icon: <IconDatabaseOff size='1rem' />,
             autoClose: 10000,
@@ -182,7 +182,7 @@ export default function ImportButton() {
             showNotification({
               title: 'No users imported',
               message:
-                'No users were imported, likely because the export contains usernames that already exist in this Zipline instance. Check the Zipline logs for more details. Files, folders, and URLs may also not have been imported.',
+                'No users were imported, likely because the export contains usernames that already exist in this ShareHost instance. Check the ShareHost logs for more details. Files, folders, and URLs may also not have been imported.',
               color: 'orange',
               icon: <IconExclamationMark size='1rem' />,
               autoClose: 5000,
@@ -197,7 +197,7 @@ export default function ImportButton() {
                   <p>
                     {Object.keys(data?.files ?? {}).length} files were imported. Since this import does not
                     copy files, you will need to move the files from the instance where they are stored to the
-                    current Zipline instance. The <Code>import-dir</Code> script may be useful for this if
+                    current ShareHost instance. The <Code>import-dir</Code> script may be useful for this if
                     using directory storage. If you are using S3, you can use the same bucket for this
                     instance.
                   </p>

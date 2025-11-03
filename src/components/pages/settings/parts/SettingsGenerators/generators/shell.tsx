@@ -80,5 +80,5 @@ ${curl.join(' ')} -d "{\\"destination\\": \\"$1\\"}"${
 `;
   }
 
-  return download(`zipline-script-${type}.sh`, script);
+  return download(`sharehost-script-${type}.sh`, script);
 }

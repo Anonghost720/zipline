@@ -16,7 +16,7 @@ export default function Mfa({
   const form = useForm({
     initialValues: {
       mfaTotpEnabled: false,
-      mfaTotpIssuer: 'Zipline',
+      mfaTotpIssuer: 'ShareHost',
       mfaPasskeys: false,
     },
     enhanceGetInputProps: (payload) => ({
@@ -31,7 +31,7 @@ export default function Mfa({
 
     form.setValues({
       mfaTotpEnabled: data.settings.mfaTotpEnabled ?? false,
-      mfaTotpIssuer: data.settings.mfaTotpIssuer ?? 'Zipline',
+      mfaTotpIssuer: data.settings.mfaTotpIssuer ?? 'ShareHost',
       mfaPasskeys: data.settings.mfaPasskeys,
     });
   }, [data]);
@@ -58,7 +58,7 @@ export default function Mfa({
           <TextInput
             label='Issuer'
             description='The issuer to use for the TOTP token.'
-            placeholder='Zipline'
+            placeholder='ShareHost'
             {...form.getInputProps('mfaTotpIssuer')}
           />
         </SimpleGrid>

@@ -134,7 +134,7 @@ export default function EditFileDetailsModal({
           description={
             <>
               Change a file&apos;s mimetype. <b>DO NOT CHANGE THIS VALUE</b> unless you know what you are
-              doing, this can mess with how Zipline renders specific file types.
+              doing, this can mess with how ShareHost renders specific file types.
             </>
           }
           value={type ?? ''}

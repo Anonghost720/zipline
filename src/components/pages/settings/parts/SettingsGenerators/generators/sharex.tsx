@@ -4,7 +4,7 @@ import { GeneratorOptions, download } from '../GeneratorButton';
 export function sharex(token: string, type: 'file' | 'url', options: GeneratorOptions) {
   const config = {
     Version: '17.0.0',
-    Name: `Zipline - ${window.location.origin} - ${type === 'file' ? 'File' : 'URL'}`,
+    Name: `ShareHost - ${window.location.origin} - ${type === 'file' ? 'File' : 'URL'}`,
     DestinationType: 'ImageUploader, TextUploader, FileUploader',
     RequestMethod: 'POST',
     RequestURL: `${window.location.origin}/api/upload`,
@@ -76,5 +76,5 @@ export function sharex(token: string, type: 'file' | 'url', options: GeneratorOp
     (config as any).Headers[key] = value;
   }
 
-  return download(`zipline-${type}.sxcu`, JSON.stringify(config, null, 2));
+  return download(`sharehost-${type}.sxcu`, JSON.stringify(config, null, 2));
 }

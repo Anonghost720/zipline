@@ -159,7 +159,7 @@ export default function Website({
             <TextInput
               label='Default Avatar'
               description='The path to use for the default avatar. This must be a path to an image, not a URL.'
-              placeholder='/zipline/avatar.png'
+              placeholder='/sharehost/avatar.png'
               {...form.getInputProps('websiteDefaultAvatar')}
             />
           </Grid.Col>
@@ -168,7 +168,7 @@ export default function Website({
             <TextInput
               label='Terms of Service'
               description='Path to a Markdown (.md) file to use for the terms of service.'
-              placeholder='/zipline/TOS.md'
+              placeholder='/sharehost/TOS.md'
               {...form.getInputProps('websiteTos')}
             />
           </Grid.Col>
@@ -177,7 +177,7 @@ export default function Website({
             <TextInput
               label='DMCA Policy'
               description='Path to a Markdown (.md) file to use for the DMCA policy.'
-              placeholder='/zipline/DMCA.md'
+              placeholder='/sharehost/DMCA.md'
               {...form.getInputProps('websiteDmca')}
             />
           </Grid.Col>

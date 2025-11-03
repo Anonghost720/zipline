@@ -9,7 +9,7 @@ export function ishare(token: string, type: 'file' | 'url', options: GeneratorOp
 
   const config = {
     requesturl: `${window.location.origin}/api/upload`,
-    name: `Zipline - ${window.location.origin} - File`,
+    name: `ShareHost - ${window.location.origin} - File`,
     headers: {},
     fileformname: 'file',
     responseurl: '{{files[0].url}}',
@@ -59,5 +59,5 @@ export function ishare(token: string, type: 'file' | 'url', options: GeneratorOp
     (config as any).headers[key] = value;
   }
 
-  return download(`zipline-${type}.iscu`, JSON.stringify(config, null, 2));
+  return download(`sharehost-${type}.iscu`, JSON.stringify(config, null, 2));
 }

@@ -18,7 +18,7 @@ export function totpQrcode({
   username: string;
   secret: string;
 }) {
-  return toDataURL(authenticator.keyuri(username, issuer ?? 'Zipline', secret), {
+  return toDataURL(authenticator.keyuri(username, issuer ?? 'ShareHost', secret), {
     width: 180,
   });
 }
