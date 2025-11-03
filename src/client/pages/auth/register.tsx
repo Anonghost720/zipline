@@ -2,18 +2,18 @@ import { Response } from '@/lib/api/response';
 import { fetchApi } from '@/lib/fetchApi';
 import { useTitle } from '@/lib/hooks/useTitle';
 import {
-    Button,
-    Center,
-    Checkbox,
-    Divider,
-    Image,
-    LoadingOverlay,
-    Paper,
-    PasswordInput,
-    Stack,
-    Text,
-    TextInput,
-    Title,
+  Button,
+  Center,
+  Checkbox,
+  Divider,
+  Image,
+  LoadingOverlay,
+  Paper,
+  PasswordInput,
+  Stack,
+  Text,
+  TextInput,
+  Title,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications, showNotification } from '@mantine/notifications';
