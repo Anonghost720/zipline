@@ -1,30 +1,30 @@
 import {
-  Button,
-  Container,
-  Text,
-  Title,
-  Stack,
-  Group,
-  Paper,
-  Grid,
-  Box,
-  useMantineTheme,
-  useMantineColorScheme,
+    Box,
+    Button,
+    Container,
+    Grid,
+    Group,
+    Paper,
+    Stack,
+    Text,
+    Title,
+    useMantineColorScheme,
+    useMantineTheme,
 } from '@mantine/core';
 import {
-  IconCloudUpload,
-  IconLink,
-  IconShieldCheck,
-  IconBolt,
-  IconDevices,
-  IconLock,
-  IconLogin,
-  IconUserPlus,
-  IconFileText,
-  IconScale,
+    IconBolt,
+    IconCloudUpload,
+    IconDevices,
+    IconFileText,
+    IconLink,
+    IconLock,
+    IconLogin,
+    IconScale,
+    IconShieldCheck,
+    IconUserPlus,
 } from '@tabler/icons-react';
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface PublicSettings {
   website: {

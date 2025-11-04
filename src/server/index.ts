@@ -186,7 +186,8 @@ async function main() {
     server.serveIndex('/folder*');
   }
 
-  server.get('/', (_, res) => res.redirect('/dashboard', 301));
+  // Serve the landing page at root
+  server.serveIndex('/');
 
   server.setNotFoundHandler((req, res) => {
     if (MODE === 'development' && server.vite)
