@@ -99,7 +99,7 @@ export default function SettingsFileView() {
       <Title order={2}>Viewing Files</Title>
       <Text c='dimmed' mt='xs'>
         All text fields support using{' '}
-        <Anchor target='_blank' href='https://zipline.diced.sh/docs/guides/variables'>
+        <Anchor target='_blank' href='https://docs.gofiber.io/'>
           variables.
         </Anchor>
       </Text>
