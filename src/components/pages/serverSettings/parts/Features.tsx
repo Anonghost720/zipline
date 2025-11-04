@@ -171,7 +171,7 @@ export default function Features({
             description={
               <>
                 The URL of the version checking server. The default points to the ShareHost repository{' '}
-                <Anchor size='xs' href='https://github.com/Anonghost720/my-zipline' target='_blank'>
+                <Anchor size='xs' href='https://zipline.diced.sh/docs/' target='_blank'>
                   on GitHub
                 </Anchor>
                 .

@@ -72,7 +72,7 @@ export async function render(
   });
   if (!user) return { html: 'Not Found', meta: '', status: 404 };
 
-  let host = req.headers.host || 'localhost';
+  let host = (req.headers['x-forwarded-host'] as string) || req.headers.host || 'localhost';
   const proto = req.headers['x-forwarded-proto'];
   try {
     if (

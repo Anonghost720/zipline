@@ -129,11 +129,11 @@ export function Component() {
                 </Text>
 
                 <Stack mt='xs'>
-                  <LinkToDoc href='https://github.com/Anonghost720/my-zipline/wiki' title='Configuration'>
+                  <LinkToDoc href='https://zipline.diced.sh/docs/' title='Configuration'>
                     Configuring ShareHost to your needs
                   </LinkToDoc>
 
-                  <LinkToDoc href='https://github.com/Anonghost720/my-zipline' title='GitHub Repository'>
+                  <LinkToDoc href='https://zipline.diced.sh/docs/' title='GitHub Repository'>
                     Visit the ShareHost GitHub repository
                   </LinkToDoc>
                 </Stack>
@@ -153,11 +153,7 @@ export function Component() {
 
                 <Text>
                   To see all of the available environment variables, please refer to the documentation{' '}
-                  <Anchor
-                    href='https://github.com/Anonghost720/my-zipline/wiki'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
+                  <Anchor href='https://zipline.diced.sh/docs/' target='_blank' rel='noopener noreferrer'>
                     here
                   </Anchor>
                   .

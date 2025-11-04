@@ -9,11 +9,11 @@ import { settingsOnSubmit } from '../settingsOnSubmit';
 const defaultExternalLinks = [
   {
     name: 'GitHub',
-    url: 'https://github.com/Anonghost720/my-zipline',
+    url: 'https://zipline.diced.sh/docs/',
   },
   {
     name: 'Documentation',
-    url: 'https://github.com/Anonghost720/my-zipline/wiki',
+    url: 'https://zipline.diced.sh/docs/',
   },
 ];
 
