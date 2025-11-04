@@ -16,6 +16,7 @@ import {
 import {
   IconArrowRight,
   IconBolt,
+  IconCheck,
   IconCloudUpload,
   IconDevices,
   IconFileText,
@@ -25,7 +26,9 @@ import {
   IconScale,
   IconShieldCheck,
   IconSparkles,
+  IconUpload,
   IconUserPlus,
+  IconUsers,
 } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -323,6 +326,191 @@ export function Component() {
             </Stack>
           )}
         </Transition>
+      </Container>
+
+      {/* Stats Cards Section */}
+      <Container size='lg' py={60} style={{ position: 'relative', zIndex: 1 }}>
+        <Grid gutter='lg'>
+          <Grid.Col span={{ base: 12, sm: 6, md: 3 }}>
+            <Paper
+              p='lg'
+              radius='lg'
+              withBorder
+              style={{
+                height: '100%',
+                borderColor: colorScheme === 'dark' ? theme.colors.blue[9] : theme.colors.blue[2],
+                borderWidth: '2px',
+                background:
+                  colorScheme === 'dark'
+                    ? 'linear-gradient(135deg, rgba(76, 110, 245, 0.1) 0%, rgba(76, 110, 245, 0.05) 100%)'
+                    : 'linear-gradient(135deg, rgba(76, 110, 245, 0.05) 0%, rgba(76, 110, 245, 0.02) 100%)',
+                transition: 'all 0.3s ease',
+                cursor: 'default',
+              }}
+              styles={{
+                root: {
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: '0 8px 24px rgba(76, 110, 245, 0.2)',
+                  },
+                },
+              }}
+            >
+              <Stack gap='sm' align='center'>
+                <Box
+                  style={{
+                    padding: rem(12),
+                    borderRadius: '50%',
+                    background: `linear-gradient(135deg, ${theme.colors.blue[6]} 0%, ${theme.colors.blue[8]} 100%)`,
+                  }}
+                >
+                  <IconUpload size={24} color='white' stroke={2.5} />
+                </Box>
+                <Text size='xl' fw={700} c='blue'>
+                  No Limits
+                </Text>
+                <Text size='sm' c='dimmed' ta='center'>
+                  We do not enforce any kind of limit to your file count or extensions of files.
+                </Text>
+              </Stack>
+            </Paper>
+          </Grid.Col>
+
+          <Grid.Col span={{ base: 12, sm: 6, md: 3 }}>
+            <Paper
+              p='lg'
+              radius='lg'
+              withBorder
+              style={{
+                height: '100%',
+                borderColor: colorScheme === 'dark' ? theme.colors.violet[9] : theme.colors.violet[2],
+                borderWidth: '2px',
+                background:
+                  colorScheme === 'dark'
+                    ? 'linear-gradient(135deg, rgba(121, 80, 242, 0.1) 0%, rgba(121, 80, 242, 0.05) 100%)'
+                    : 'linear-gradient(135deg, rgba(121, 80, 242, 0.05) 0%, rgba(121, 80, 242, 0.02) 100%)',
+                transition: 'all 0.3s ease',
+                cursor: 'default',
+              }}
+              styles={{
+                root: {
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: '0 8px 24px rgba(121, 80, 242, 0.2)',
+                  },
+                },
+              }}
+            >
+              <Stack gap='sm' align='center'>
+                <Box
+                  style={{
+                    padding: rem(12),
+                    borderRadius: '50%',
+                    background: `linear-gradient(135deg, ${theme.colors.violet[6]} 0%, ${theme.colors.violet[8]} 100%)`,
+                  }}
+                >
+                  <IconShieldCheck size={24} color='white' stroke={2.5} />
+                </Box>
+                <Text size='xl' fw={700} c='violet'>
+                  Premium Domains
+                </Text>
+                <Text size='sm' c='dimmed' ta='center'>
+                  Our users can enjoy our premium selection of domains.
+                </Text>
+              </Stack>
+            </Paper>
+          </Grid.Col>
+
+          <Grid.Col span={{ base: 12, sm: 6, md: 3 }}>
+            <Paper
+              p='lg'
+              radius='lg'
+              withBorder
+              style={{
+                height: '100%',
+                borderColor: colorScheme === 'dark' ? theme.colors.teal[9] : theme.colors.teal[2],
+                borderWidth: '2px',
+                background:
+                  colorScheme === 'dark'
+                    ? 'linear-gradient(135deg, rgba(18, 184, 134, 0.1) 0%, rgba(18, 184, 134, 0.05) 100%)'
+                    : 'linear-gradient(135deg, rgba(18, 184, 134, 0.05) 0%, rgba(18, 184, 134, 0.02) 100%)',
+                transition: 'all 0.3s ease',
+                cursor: 'default',
+              }}
+              styles={{
+                root: {
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: '0 8px 24px rgba(18, 184, 134, 0.2)',
+                  },
+                },
+              }}
+            >
+              <Stack gap='sm' align='center'>
+                <Box
+                  style={{
+                    padding: rem(12),
+                    borderRadius: '50%',
+                    background: `linear-gradient(135deg, ${theme.colors.teal[6]} 0%, ${theme.colors.teal[8]} 100%)`,
+                  }}
+                >
+                  <IconUsers size={24} color='white' stroke={2.5} />
+                </Box>
+                <Text size='xl' fw={700} c='teal'>
+                  AES-256-CBC Encryption
+                </Text>
+                <Text size='sm' c='dimmed' ta='center'>
+                  All uploaded files are encrypted using AES-256-CBC.
+                </Text>
+              </Stack>
+            </Paper>
+          </Grid.Col>
+
+          <Grid.Col span={{ base: 12, sm: 6, md: 3 }}>
+            <Paper
+              p='lg'
+              radius='lg'
+              withBorder
+              style={{
+                height: '100%',
+                borderColor: colorScheme === 'dark' ? theme.colors.pink[9] : theme.colors.pink[2],
+                borderWidth: '2px',
+                background:
+                  colorScheme === 'dark'
+                    ? 'linear-gradient(135deg, rgba(230, 73, 128, 0.1) 0%, rgba(230, 73, 128, 0.05) 100%)'
+                    : 'linear-gradient(135deg, rgba(230, 73, 128, 0.05) 0%, rgba(230, 73, 128, 0.02) 100%)',
+                transition: 'all 0.3s ease',
+                cursor: 'default',
+              }}
+              styles={{
+                root: {
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: '0 8px 24px rgba(230, 73, 128, 0.2)',
+                  },
+                },
+              }}
+            >
+              <Stack gap='sm' align='center'>
+                <Box
+                  style={{
+                    padding: rem(12),
+                    borderRadius: '50%',
+                    background: `linear-gradient(135deg, ${theme.colors.pink[6]} 0%, ${theme.colors.pink[8]} 100%)`,
+                  }}
+                >
+                  <IconCheck size={24} color='white' stroke={2.5} />
+                </Box>
+                <Text size='xl' fw={700} c='pink'>
+                  Free for Everyone
+                </Text>
+                <Text size='sm' c='dimmed' ta='center'>
+                  Using the host is free of charge for everyone.
+                </Text>
+              </Stack>
+            </Paper>
+          </Grid.Col>
+        </Grid>
       </Container>
 
       {/* Features Section */}
