@@ -5,11 +5,11 @@ import useLogin from '@/lib/hooks/useLogin';
 import { useTitle } from '@/lib/hooks/useTitle';
 import { authenticateWeb } from '@/lib/passkey';
 import {
+  Box,
   Button,
   Center,
   Divider,
   Group,
-  Image,
   LoadingOverlay,
   Modal,
   Paper,
@@ -19,6 +19,7 @@ import {
   Text,
   TextInput,
   Title,
+  useMantineColorScheme,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { notifications, showNotification } from '@mantine/notifications';
@@ -43,6 +44,7 @@ export default function Login() {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
   const { user, mutate } = useLogin();
+  const { colorScheme } = useMantineColorScheme();
 
   const navigate = useNavigate();
 
@@ -249,144 +251,234 @@ export default function Login() {
         </Group>
       </Modal>
 
-      <Center h='100vh'>
-        {config.website.loginBackground && (
-          <Image
-            src={config.website.loginBackground}
-            alt={config.website.loginBackground + ' failed to load'}
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              ...(config.website.loginBackgroundBlur && { filter: 'blur(10px)' }),
-            }}
-          />
-        )}
-
-        <Paper
-          w='350px'
-          p='xl'
-          shadow='xl'
-          withBorder
+      <Box
+        style={{
+          minHeight: '100vh',
+          background:
+            colorScheme === 'dark'
+              ? 'radial-gradient(circle at 50% 0%, rgba(76, 110, 245, 0.15) 0%, transparent 50%), linear-gradient(180deg, #1a1b1e 0%, #141517 100%)'
+              : 'radial-gradient(circle at 50% 0%, rgba(76, 110, 245, 0.08) 0%, transparent 50%), linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%)',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Animated background blobs */}
+        <Box
           style={{
-            backgroundColor: config.website.loginBackground ? 'rgba(0, 0, 0, 0)' : undefined,
-            backdropFilter: config.website.loginBackgroundBlur ? 'blur(35px)' : undefined,
+            position: 'absolute',
+            top: '-10%',
+            right: '-5%',
+            width: '500px',
+            height: '500px',
+            background:
+              colorScheme === 'dark'
+                ? 'radial-gradient(circle, rgba(121, 80, 242, 0.2) 0%, transparent 70%)'
+                : 'radial-gradient(circle, rgba(121, 80, 242, 0.1) 0%, transparent 70%)',
+            borderRadius: '50%',
+            filter: 'blur(80px)',
+            animation: 'float 20s ease-in-out infinite',
           }}
-        >
-          <div style={{ width: '100%', overflowWrap: 'break-word' }}>
-            <Title
-              order={1}
-              ta='center'
-              style={{
-                whiteSpace: 'normal',
-                fontSize: `clamp(20px, ${Math.max(
-                  50 - (config.website.title?.length ?? 0) / 2,
-                  20,
-                )}px, 50px)`,
-              }}
-            >
-              <b>{config.website.title ?? 'ShareHost'}</b>
-            </Title>
-          </div>
+        />
+        <Box
+          style={{
+            position: 'absolute',
+            bottom: '-10%',
+            left: '-5%',
+            width: '600px',
+            height: '600px',
+            background:
+              colorScheme === 'dark'
+                ? 'radial-gradient(circle, rgba(76, 110, 245, 0.2) 0%, transparent 70%)'
+                : 'radial-gradient(circle, rgba(76, 110, 245, 0.1) 0%, transparent 70%)',
+            borderRadius: '50%',
+            filter: 'blur(80px)',
+            animation: 'float 25s ease-in-out infinite reverse',
+          }}
+        />
 
-          {showLocalLogin && (
-            <form onSubmit={form.onSubmit((v) => onSubmit(v))}>
-              <Stack my='sm'>
-                <TextInput
-                  size='md'
-                  placeholder='Enter your username...'
+        <style>
+          {`
+            @keyframes float {
+              0%, 100% { transform: translate(0, 0) rotate(0deg); }
+              33% { transform: translate(30px, -30px) rotate(120deg); }
+              66% { transform: translate(-20px, 20px) rotate(240deg); }
+            }
+            @keyframes shimmer {
+              0% { background-position: -1000px 0; }
+              100% { background-position: 1000px 0; }
+            }
+          `}
+        </style>
+
+        <Center h='100vh' style={{ position: 'relative', zIndex: 1 }}>
+          <Paper
+            w='400px'
+            p='xl'
+            shadow='xl'
+            withBorder
+            radius='xl'
+            style={{
+              borderColor: colorScheme === 'dark' ? 'rgba(76, 110, 245, 0.3)' : 'rgba(76, 110, 245, 0.2)',
+              borderWidth: '2px',
+              boxShadow:
+                colorScheme === 'dark'
+                  ? '0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(76, 110, 245, 0.2)'
+                  : '0 20px 60px rgba(0, 0, 0, 0.1), 0 0 40px rgba(76, 110, 245, 0.15)',
+              backdropFilter: 'blur(10px)',
+              backgroundColor: colorScheme === 'dark' ? 'rgba(26, 27, 30, 0.7)' : 'rgba(255, 255, 255, 0.7)',
+            }}
+          >
+            <div style={{ width: '100%', overflowWrap: 'break-word' }}>
+              <Title
+                order={1}
+                ta='center'
+                mb='lg'
+                style={{
+                  whiteSpace: 'normal',
+                  fontSize: `clamp(24px, ${Math.max(
+                    50 - (config.website.title?.length ?? 0) / 2,
+                    24,
+                  )}px, 50px)`,
+                  background: 'linear-gradient(135deg, #4c6ef5 0%, #7950f2 50%, #e64980 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  fontWeight: 900,
+                }}
+              >
+                {config.website.title ?? 'ShareHost'}
+              </Title>
+            </div>
+
+            {showLocalLogin && (
+              <form onSubmit={form.onSubmit((v) => onSubmit(v))}>
+                <Stack gap='md'>
+                  <TextInput
+                    size='lg'
+                    placeholder='Enter your username...'
+                    {...form.getInputProps('username', { withError: true })}
+                  />
+
+                  <PasswordInput
+                    size='lg'
+                    placeholder='Enter your password...'
+                    {...form.getInputProps('password')}
+                  />
+
+                  <Button
+                    size='lg'
+                    fullWidth
+                    type='submit'
+                    loading={!config}
+                    variant='gradient'
+                    gradient={{ from: 'blue', to: 'violet', deg: 135 }}
+                    style={{
+                      transition: 'all 0.3s ease',
+                    }}
+                    styles={{
+                      root: {
+                        '&:hover': {
+                          transform: 'translateY(-2px)',
+                          boxShadow: '0 12px 28px rgba(76, 110, 245, 0.4)',
+                        },
+                      },
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Stack>
+              </form>
+            )}
+
+            <Stack gap='md' mt='md'>
+              {(config.features.oauthRegistration || config.features.userRegistration) && (
+                <Divider
+                  label='or'
+                  labelPosition='center'
                   styles={{
-                    input: {
-                      backgroundColor: config.website.loginBackground ? 'transparent' : undefined,
+                    label: {
+                      color: colorScheme === 'dark' ? '#a5a5a5' : '#868e96',
                     },
                   }}
-                  {...form.getInputProps('username', { withError: true })}
                 />
+              )}
 
-                <PasswordInput
-                  size='md'
-                  placeholder='Enter your password...'
-                  styles={{
-                    input: {
-                      backgroundColor: config.website.loginBackground ? 'transparent' : undefined,
-                    },
-                  }}
-                  {...form.getInputProps('password')}
-                />
-
+              {config.mfa.passkeys && (
                 <Button
-                  size='md'
+                  onClick={handlePasskeyLogin}
+                  size='lg'
                   fullWidth
-                  type='submit'
-                  loading={!config}
-                  variant={config.website.loginBackground ? 'outline' : 'filled'}
+                  variant='light'
+                  color='violet'
+                  leftSection={<IconKey size='1.2rem' />}
+                  disabled={passkeyErrored}
+                  loading={passkeyLoading}
+                  style={{
+                    transition: 'all 0.3s ease',
+                  }}
+                  styles={{
+                    root: {
+                      '&:hover': {
+                        transform: 'translateY(-1px)',
+                      },
+                    },
+                  }}
                 >
-                  Login
+                  Login with passkey
                 </Button>
-              </Stack>
-            </form>
-          )}
-
-          <Stack my='xs'>
-            {(config.features.oauthRegistration || config.features.userRegistration) && (
-              <Divider label='or' />
-            )}
-
-            {config.mfa.passkeys && (
-              <Button
-                onClick={handlePasskeyLogin}
-                size='md'
-                fullWidth
-                variant='outline'
-                leftSection={<IconKey size='1rem' />}
-                color={passkeyErrored ? 'red' : undefined}
-                loading={passkeyLoading}
-              >
-                Login with passkey
-              </Button>
-            )}
-
-            {config.features.userRegistration && (
-              <Button
-                component={Link}
-                to='/auth/register'
-                size='md'
-                fullWidth
-                variant='outline'
-                leftSection={<IconUserPlus size='1rem' />}
-              >
-                Sign up
-              </Button>
-            )}
-
-            <Group grow>
-              {config.oauthEnabled.discord && (
-                <ExternalAuthButton
-                  provider='Discord'
-                  leftSection={<IconBrandDiscordFilled stroke={4} size='1.1rem' />}
-                />
               )}
-              {config.oauthEnabled.github && (
-                <ExternalAuthButton provider='GitHub' leftSection={<IconBrandGithubFilled size='1.1rem' />} />
+
+              {config.features.userRegistration && (
+                <Button
+                  component={Link}
+                  to='/auth/register'
+                  size='lg'
+                  fullWidth
+                  variant='light'
+                  color='blue'
+                  leftSection={<IconUserPlus size='1.2rem' />}
+                  style={{
+                    transition: 'all 0.3s ease',
+                  }}
+                  styles={{
+                    root: {
+                      '&:hover': {
+                        transform: 'translateY(-1px)',
+                      },
+                    },
+                  }}
+                >
+                  Sign up
+                </Button>
               )}
-              {config.oauthEnabled.google && (
-                <ExternalAuthButton
-                  provider='Google'
-                  leftSection={<IconBrandGoogleFilled stroke={4} size='1.1rem' />}
-                />
-              )}
-              {config.oauthEnabled.oidc && (
-                <ExternalAuthButton provider='OIDC' leftSection={<IconCircleKeyFilled size='1.1rem' />} />
-              )}
-            </Group>
-          </Stack>
-        </Paper>
-      </Center>
+
+              <Group grow>
+                {config.oauthEnabled.discord && (
+                  <ExternalAuthButton
+                    provider='Discord'
+                    leftSection={<IconBrandDiscordFilled stroke={4} size='1.1rem' />}
+                  />
+                )}
+                {config.oauthEnabled.github && (
+                  <ExternalAuthButton
+                    provider='GitHub'
+                    leftSection={<IconBrandGithubFilled size='1.1rem' />}
+                  />
+                )}
+                {config.oauthEnabled.google && (
+                  <ExternalAuthButton
+                    provider='Google'
+                    leftSection={<IconBrandGoogleFilled stroke={4} size='1.1rem' />}
+                  />
+                )}
+                {config.oauthEnabled.oidc && (
+                  <ExternalAuthButton provider='OIDC' leftSection={<IconCircleKeyFilled size='1.1rem' />} />
+                )}
+              </Group>
+            </Stack>
+          </Paper>
+        </Center>
+      </Box>
     </>
   );
 }

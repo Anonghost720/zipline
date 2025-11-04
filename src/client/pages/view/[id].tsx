@@ -21,7 +21,7 @@ import {
   Typography,
 } from '@mantine/core';
 import { IconDownload, IconExternalLink, IconInfoCircleFilled } from '@tabler/icons-react';
-import * as sanitize from 'isomorphic-dompurify';
+import DOMPurify from 'isomorphic-dompurify';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSsrData } from '../../../components/ZiplineSSRProvider';
@@ -125,7 +125,7 @@ export default function ViewFileId() {
               <Text
                 ta={user?.view!.align ?? 'left'}
                 dangerouslySetInnerHTML={{
-                  __html: sanitize.sanitize(
+                  __html: DOMPurify.sanitize(
                     parseString(user.view.content, {
                       file: file as unknown as File,
                       user: user as User,
@@ -227,7 +227,7 @@ export default function ViewFileId() {
                 mt='sm'
                 ta={user?.view.align ?? 'left'}
                 dangerouslySetInnerHTML={{
-                  __html: sanitize.sanitize(
+                  __html: DOMPurify.sanitize(
                     parseString(user?.view.content, {
                       file: file as unknown as File,
                       link: {

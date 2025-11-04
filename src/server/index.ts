@@ -180,14 +180,16 @@ async function main() {
   const routesOptions = Object.values(routes);
   Promise.all(routesOptions.map((route) => server.register(route)));
 
-  if (MODE === 'production') {
+  if (MODE === 'production' && typeof server.serveIndex === 'function') {
     server.serveIndex('/dashboard*');
     server.serveIndex('/auth*');
     server.serveIndex('/folder*');
+    // Serve the landing page at root
+    server.serveIndex('/');
+  } else if (MODE === 'development') {
+    // In dev mode, Vite handles routing via the middleware
+    logger.debug('development mode: vite will handle SSR routing');
   }
-
-  // Serve the landing page at root
-  server.serveIndex('/');
 
   server.setNotFoundHandler((req, res) => {
     if (MODE === 'development' && server.vite)
@@ -205,7 +207,11 @@ async function main() {
         statusCode: 404,
       });
     } else {
-      return res.serveIndex();
+      if (typeof res.serveIndex === 'function') {
+        return res.serveIndex();
+      } else {
+        return res.status(404).send({ error: 'Not Found' });
+      }
     }
   });
 

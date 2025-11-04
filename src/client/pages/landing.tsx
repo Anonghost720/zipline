@@ -170,9 +170,9 @@ export function Component() {
             0% { background-position: -1000px 0; }
             100% { background-position: 1000px 0; }
           }
-          @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(76, 110, 245, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(121, 80, 242, 0.5); }
+          @keyframes pulse-glow-icon {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(76, 110, 245, 0.3)); }
+            50% { filter: drop-shadow(0 0 40px rgba(121, 80, 242, 0.6)); }
           }
         `}
       </style>
@@ -185,10 +185,19 @@ export function Component() {
               {/* Sparkle Icon */}
               <Box
                 style={{
-                  animation: 'pulse-glow 3s ease-in-out infinite',
+                  display: 'inline-flex',
+                  background: 'transparent',
                 }}
               >
-                <IconSparkles size={48} stroke={1.5} color={theme.colors.blue[5]} />
+                <IconSparkles
+                  size={48}
+                  stroke={1.5}
+                  color={theme.colors.blue[5]}
+                  style={{
+                    filter: 'drop-shadow(0 0 20px rgba(76, 110, 245, 0.3))',
+                    animation: 'pulse-glow-icon 3s ease-in-out infinite',
+                  }}
+                />
               </Box>
 
               {/* Logo/Title */}
@@ -346,13 +355,7 @@ export function Component() {
           <Grid gutter='lg' mt='xl'>
             {features.map((feature, index) => (
               <Grid.Col key={index} span={{ base: 12, sm: 6, md: 4 }}>
-                <Transition
-                  mounted={mounted}
-                  transition='fade-up'
-                  duration={600}
-                  timingFunction='ease'
-                  delay={100 + index * 100}
-                >
+                <Transition mounted={mounted} transition='fade-up' duration={600} timingFunction='ease'>
                   {(styles) => (
                     <Paper
                       p='xl'
@@ -362,6 +365,7 @@ export function Component() {
                         ...styles,
                         height: '100%',
                         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        transitionDelay: `${100 + index * 100}ms`,
                         cursor: 'default',
                         borderColor: colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3],
                         backgroundColor: colorScheme === 'dark' ? theme.colors.dark[6] : 'white',
@@ -415,7 +419,11 @@ export function Component() {
                           }}
                           className='feature-icon-box'
                         >
-                          <feature.icon size={32} color={theme.colors[feature.color][6]} stroke={2} />
+                          <feature.icon
+                            size={32}
+                            color={colorScheme === 'dark' ? '#ffffff' : theme.colors[feature.color][2]}
+                            stroke={2.5}
+                          />
                         </Box>
                         <style>
                           {`
@@ -561,9 +569,53 @@ export function Component() {
         }}
       >
         <Container size='lg'>
-          <Text size='sm' c='dimmed' ta='center' fw={500}>
-            © {new Date().getFullYear()} {settings?.website?.title || 'ShareHost'}. All rights reserved.
-          </Text>
+          <Stack gap='md' align='center'>
+            <Group gap='lg'>
+              <Button
+                component='a'
+                href='/auth/tos'
+                variant='subtle'
+                color='gray'
+                size='sm'
+                style={{
+                  transition: 'all 0.2s ease',
+                }}
+                styles={{
+                  root: {
+                    '&:hover': {
+                      color: theme.colors.blue[5],
+                      transform: 'translateY(-2px)',
+                    },
+                  },
+                }}
+              >
+                Terms of Service
+              </Button>
+              <Button
+                component='a'
+                href='/dmca'
+                variant='subtle'
+                color='gray'
+                size='sm'
+                style={{
+                  transition: 'all 0.2s ease',
+                }}
+                styles={{
+                  root: {
+                    '&:hover': {
+                      color: theme.colors.blue[5],
+                      transform: 'translateY(-2px)',
+                    },
+                  },
+                }}
+              >
+                DMCA Policy
+              </Button>
+            </Group>
+            <Text size='sm' c='dimmed' ta='center' fw={500}>
+              © {new Date().getFullYear()} {settings?.website?.title || 'ShareHost'}. All rights reserved.
+            </Text>
+          </Stack>
         </Container>
       </Box>
     </Box>

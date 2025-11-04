@@ -79,5 +79,5 @@ ${curl.join(' ')} -d "{\\"url\\": \\"$1\\"}"${
 `;
   }
 
-  return download(`zipline-flameshot-${type}.sh`, script);
+  return download(`sharehost-flameshot-${type}.sh`, script);
 }
