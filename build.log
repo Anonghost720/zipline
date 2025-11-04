@@ -1,0 +1,770 @@
+nohup: ignoring input
+#1 [internal] load local bake definitions
+#1 reading from stdin 490B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.40kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-alpine3.21
+#3 DONE 0.1s
+
+#4 [base 1/7] FROM docker.io/library/node:22-alpine3.21@sha256:af8023ec879993821f6d5b21382ed915622a1b0f1cc03dbeb6804afaf01f8885
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 105B 0.0s done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 103.70kB 0.2s done
+#6 DONE 0.2s
+
+#7 [builder 13/14] COPY scripts ./scripts
+#7 CACHED
+
+#8 [builder 14/14] RUN ZIPLINE_BUILD=true pnpm run build
+#8 1.165 
+#8 1.165 > sharehost@4.3.1 build /zipline
+#8 1.165 > tsx scripts/build.ts
+#8 1.165 
+#8 2.150 
+#8 2.150 > Running step "build/lint"...
+#8 2.150 
+#8 22.36 
+#8 22.36 > Running step "build/prisma"...
+#8 22.36 
+#8 25.78 Prisma schema loaded from prisma/schema.prisma
+#8 26.26 
+#8 26.26 ✔ Generated Prisma Client (6.13.0) to ./src/prisma in 271ms
+#8 26.26 
+#8 26.40 
+#8 26.40 - Skipping step "build/typecheck"...
+#8 26.40 
+#8 26.40 
+#8 26.40 > Running step "build/server"...
+#8 26.40 
+#8 27.38 CLI Building entry: src/ctl/index.ts, src/lib/base64.ts, src/lib/bytes.ts, src/lib/code.ts, src/lib/compress.ts, src/lib/cookie.ts, src/lib/crypto.ts, src/lib/fetchApi.ts, src/lib/fs.ts, src/lib/logger.ts, src/lib/mimes.ts, src/lib/passkey.ts, src/lib/primitive.ts, src/lib/random.ts, src/lib/ratelimits.ts, src/lib/relativeTime.ts, src/lib/response.ts, src/lib/role.ts, src/lib/stats.ts, src/lib/totp.ts, src/lib/url.ts, src/lib/version.ts, src/offload/partial.ts, src/offload/proxiedDb.ts, src/offload/thumbnails.ts, src/prisma/client.ts, src/prisma/commonInputTypes.ts, src/prisma/enums.ts, src/prisma/models.ts, src/server/index.ts, src/server/session.ts, src/ctl/commands/export-config.ts, src/ctl/commands/import-dir.ts, src/ctl/commands/list-users.ts, src/ctl/commands/read-config.ts, src/ctl/commands/set-user.ts, src/lib/api/range.ts, src/lib/api/response.ts, src/lib/config/index.ts, src/lib/config/safe.ts, src/lib/config/validate.ts, src/lib/datasource/Datasource.ts, src/lib/datasource/Local.ts, src/lib/datasource/S3.ts, src/lib/datasource/index.ts, src/lib/db/index.ts, src/lib/gps/constants.ts, src/lib/gps/index.ts, src/lib/hooks/useAvatar.ts, src/lib/hooks/useLogin.ts, src/lib/hooks/useQueryState.ts, src/lib/hooks/useTitle.ts, src/lib/hooks/useVersion.ts, src/lib/oauth/enabled.ts, src/lib/oauth/providerUtil.ts, src/lib/parser/index.ts, src/lib/parser/metrics.ts, src/lib/server-util/clearTemp.ts, src/lib/server-util/clearZeros.ts, src/lib/server-util/requerySize.ts, src/lib/ssr/constants.ts, src/lib/ssr/createZiplineSsr.ts, src/lib/store/fileTableSettings.ts, src/lib/store/settings.ts, src/lib/store/uploadOptions.ts, src/lib/store/user.ts, src/lib/store/view.ts, src/lib/tasks/index.ts, src/lib/theme/color.ts, src/lib/theme/file.ts, src/lib/theme/index.ts, src/lib/uploader/formatFileName.ts, src/lib/uploader/parseHeaders.ts, src/lib/uploader/randomWords.ts, src/lib/webhooks/discord.ts, src/lib/webhooks/http.ts, src/lib/webhooks/index.ts, src/prisma/internal/class.ts, src/prisma/internal/prismaNamespace.ts, src/prisma/models/Export.ts, src/prisma/models/File.ts, src/prisma/models/Folder.ts, src/prisma/models/IncompleteFile.ts, src/prisma/models/Invite.ts, src/prisma/models/Metric.ts, src/prisma/models/OAuthProvider.ts, src/prisma/models/Tag.ts, src/prisma/models/Thumbnail.ts, src/prisma/models/Url.ts, src/prisma/models/User.ts, src/prisma/models/UserPasskey.ts, src/prisma/models/UserQuota.ts, src/prisma/models/Zipline.ts, src/server/middleware/administrator.ts, src/server/middleware/user.ts, src/server/plugins/checkRateLimit.ts, src/server/plugins/oauth.ts, src/server/plugins/vite.ts, src/server/routes/favicon.ts, src/server/routes/files.dy.ts, src/server/routes/index.ts, src/server/routes/invites.ts, src/server/routes/manifest.json.ts, src/server/routes/robots.txt.ts, src/server/routes/urls.dy.ts, src/lib/config/read/db.ts, src/lib/config/read/env.ts, src/lib/config/read/index.ts, src/lib/config/read/transform.ts, src/lib/db/migration/index.d.ts, src/lib/db/migration/index.ts, src/lib/db/models/file.ts, src/lib/db/models/folder.ts, src/lib/db/models/incompleteFile.ts, src/lib/db/models/invite.ts, src/lib/db/models/metric.ts, src/lib/db/models/tag.ts, src/lib/db/models/url.ts, src/lib/db/models/user.ts, src/lib/db/models/zipline.ts, src/lib/import/version3/find.ts, src/lib/import/version3/validateExport.ts, src/lib/tasks/run/clearInvites.ts, src/lib/tasks/run/deleteFiles.ts, src/lib/tasks/run/maxViews.ts, src/lib/tasks/run/metrics.ts, src/lib/tasks/run/thumbnails.ts, src/lib/theme/builtins/dark_blue.ts, src/lib/uploader/wordlists/adjectives.ts, src/lib/uploader/wordlists/animals.ts, src/server/routes/api/healthcheck.ts, src/server/routes/api/setup.ts, src/server/routes/api/stats.ts, src/server/routes/api/version.ts, src/server/routes/raw/[id].ts, src/server/routes/api/auth/login.ts, src/server/routes/api/auth/logout.ts, src/server/routes/api/auth/register.ts, src/server/routes/api/auth/webauthn.ts, src/server/routes/api/server/clear_temp.ts, src/server/routes/api/server/clear_zeros.ts, src/server/routes/api/server/folder.ts, src/server/routes/api/server/public.ts, src/server/routes/api/server/requery_size.ts, src/server/routes/api/server/themes.ts, src/server/routes/api/server/thumbnails.ts, src/server/routes/api/upload/index.ts, src/server/routes/api/upload/partial.ts, src/server/routes/api/user/avatar.ts, src/server/routes/api/user/export.ts, src/server/routes/api/user/index.ts, src/server/routes/api/user/recent.ts, src/server/routes/api/user/sessions.ts, src/server/routes/api/user/stats.ts, src/server/routes/api/user/token.ts, src/server/routes/api/users/[id].ts, src/server/routes/api/users/index.ts, src/server/routes/api/auth/invites/[id].ts, src/server/routes/api/auth/invites/index.ts, src/server/routes/api/auth/invites/web.ts, src/server/routes/api/auth/oauth/discord.ts, src/server/routes/api/auth/oauth/github.ts, src/server/routes/api/auth/oauth/google.ts, src/server/routes/api/auth/oauth/index.ts, src/server/routes/api/auth/oauth/oidc.ts, src/server/routes/api/server/import/v3.ts, src/server/routes/api/server/settings/index.ts, src/server/routes/api/server/settings/web.ts, src/server/routes/api/user/files/incomplete.ts, src/server/routes/api/user/files/index.ts, src/server/routes/api/user/files/transaction.ts, src/server/routes/api/user/folders/[id].ts, src/server/routes/api/user/folders/index.ts, src/server/routes/api/user/mfa/passkey.ts, src/server/routes/api/user/mfa/totp.ts, src/server/routes/api/user/tags/[id].ts, src/server/routes/api/user/tags/index.ts, src/server/routes/api/user/urls/index.ts, src/server/routes/api/user/files/[id]/index.ts, src/server/routes/api/user/files/[id]/password.ts, src/server/routes/api/user/files/[id]/raw.ts, src/server/routes/api/user/urls/[id]/index.ts, src/server/routes/api/user/urls/[id]/password.ts
+#8 27.38 CLI Using tsconfig: tsconfig.json
+#8 27.38 CLI tsup v8.5.0
+#8 27.38 CLI Using tsup config: /zipline/tsup.config.ts
+#8 27.39 CLI Target: esnext
+#8 27.39 CLI Cleaning output folder
+#8 27.39 CJS Build start
+#8 27.80 CJS build/ctl/commands/export-config.js                     4.29 KB
+#8 27.80 CJS build/lib/api/range.js                                  1.42 KB
+#8 27.80 CJS build/prisma/internal/class.js                          28.17 KB
+#8 27.80 CJS build/server/middleware/administrator.js                1.34 KB
+#8 27.80 CJS build/lib/db/migration/index.d.js                       49.00 B
+#8 27.80 CJS build/lib/import/version3/find.js                       1.32 KB
+#8 27.80 CJS build/lib/config/read/db.js                             6.49 KB
+#8 27.80 CJS build/lib/tasks/run/deleteFiles.js                      2.08 KB
+#8 27.80 CJS build/lib/theme/builtins/dark_blue.js                   1.57 KB
+#8 27.80 CJS build/server/routes/api/auth/invites/web.js             2.80 KB
+#8 27.80 CJS build/lib/uploader/wordlists/adjectives.js              20.42 KB
+#8 27.80 CJS build/server/routes/api/server/import/v3.js             10.40 KB
+#8 27.80 CJS build/ctl/index.js                                      2.11 KB
+#8 27.80 CJS build/server/routes/api/user/files/[id]/index.js        5.93 KB
+#8 27.80 CJS build/offload/partial.js                                6.91 KB
+#8 27.80 CJS build/server/routes/api/user/urls/[id]/index.js         5.04 KB
+#8 27.80 CJS build/lib/datasource/Local.js                           3.72 KB
+#8 27.80 CJS build/lib/gps/constants.js                              1.77 KB
+#8 27.80 CJS build/lib/hooks/useAvatar.js                            1.91 KB
+#8 27.80 CJS build/lib/server-util/clearZeros.js                     2.11 KB
+#8 27.80 CJS build/lib/oauth/enabled.js                              1.92 KB
+#8 27.80 CJS build/lib/parser/index.js                               13.38 KB
+#8 27.80 CJS build/lib/store/fileTableSettings.js                    2.52 KB
+#8 27.80 CJS build/lib/ssr/createZiplineSsr.js                       1.30 KB
+#8 27.80 CJS build/lib/webhooks/discord.js                           5.85 KB
+#8 27.80 CJS build/prisma/models/File.js                             771.00 B
+#8 27.80 CJS build/lib/db/models/folder.js                           1.71 KB
+#8 27.80 CJS build/server/plugins/oauth.js                           7.57 KB
+#8 27.80 CJS build/server/routes/api/healthcheck.js                  2.48 KB
+#8 27.80 CJS build/server/routes/raw/[id].js                         6.75 KB
+#8 27.80 CJS build/server/routes/api/auth/login.js                   4.09 KB
+#8 27.80 CJS build/server/routes/api/upload/index.js                 10.42 KB
+#8 27.80 CJS build/server/routes/api/users/[id].js                   8.46 KB
+#8 27.80 CJS build/server/routes/api/user/folders/index.js           4.31 KB
+#8 27.80 CJS build/server/routes/api/auth/oauth/github.js            4.42 KB
+#8 27.80 CJS build/server/routes/api/server/settings/web.js          2.82 KB
+#8 27.80 CJS build/server/routes/api/user/files/incomplete.js        3.26 KB
+#8 27.80 CJS build/server/routes/api/user/tags/[id].js               3.71 KB
+#8 27.80 CJS build/lib/cookie.js                                     1.44 KB
+#8 27.80 CJS build/server/routes/api/user/mfa/passkey.js             3.90 KB
+#8 27.80 CJS build/lib/compress.js                                   2.98 KB
+#8 27.80 CJS build/lib/fs.js                                         1.20 KB
+#8 27.80 CJS build/lib/fetchApi.js                                   1.76 KB
+#8 27.80 CJS build/lib/logger.js                                     4.20 KB
+#8 27.80 CJS build/lib/mimes.js                                      1.37 KB
+#8 27.80 CJS build/lib/crypto.js                                     4.37 KB
+#8 27.80 CJS build/lib/base64.js                                     1.64 KB
+#8 27.80 CJS build/lib/primitive.js                                  1.34 KB
+#8 27.80 CJS build/lib/random.js                                     2.02 KB
+#8 27.80 CJS build/lib/relativeTime.js                               2.37 KB
+#8 27.80 CJS build/lib/response.js                                   783.00 B
+#8 27.80 CJS build/lib/stats.js                                      2.80 KB
+#8 27.80 CJS build/lib/role.js                                       1.59 KB
+#8 27.80 CJS build/lib/totp.js                                       1.59 KB
+#8 27.80 CJS build/offload/thumbnails.js                             6.42 KB
+#8 27.80 CJS build/prisma/client.js                                  2.36 KB
+#8 27.80 CJS build/offload/proxiedDb.js                              1.79 KB
+#8 27.80 CJS build/lib/version.js                                    1.87 KB
+#8 27.80 CJS build/prisma/commonInputTypes.js                        807.00 B
+#8 27.80 CJS build/lib/url.js                                        1.27 KB
+#8 27.80 CJS build/prisma/enums.js                                   1.60 KB
+#8 27.80 CJS build/lib/passkey.js                                    2.07 KB
+#8 27.80 CJS build/server/index.js                                   10.61 KB
+#8 27.80 CJS build/server/session.js                                 2.45 KB
+#8 27.80 CJS build/lib/bytes.js                                      1.86 KB
+#8 27.80 CJS build/lib/ratelimits.js                                 1.21 KB
+#8 27.80 CJS build/ctl/commands/list-users.js                        2.33 KB
+#8 27.80 CJS build/lib/api/response.js                               783.00 B
+#8 27.80 CJS build/ctl/commands/import-dir.js                        5.16 KB
+#8 27.80 CJS build/ctl/commands/set-user.js                          2.72 KB
+#8 27.80 CJS build/lib/config/safe.js                                2.03 KB
+#8 27.80 CJS build/prisma/models.js                                  777.00 B
+#8 27.80 CJS build/lib/config/index.js                               1.35 KB
+#8 27.80 CJS build/ctl/commands/read-config.js                       1.91 KB
+#8 27.80 CJS build/lib/datasource/index.js                           3.08 KB
+#8 27.80 CJS build/lib/db/index.js                                   2.78 KB
+#8 27.80 CJS build/lib/datasource/Datasource.js                      1.09 KB
+#8 27.80 CJS build/lib/config/validate.js                            13.67 KB
+#8 27.80 CJS build/lib/hooks/useLogin.js                             2.53 KB
+#8 27.80 CJS build/lib/gps/index.js                                  4.71 KB
+#8 27.80 CJS build/lib/oauth/providerUtil.js                         3.57 KB
+#8 27.80 CJS build/lib/datasource/S3.js                              10.65 KB
+#8 27.80 CJS build/lib/hooks/useTitle.js                             2.16 KB
+#8 27.80 CJS build/lib/parser/metrics.js                             2.16 KB
+#8 27.80 CJS build/lib/hooks/useQueryState.js                        1.95 KB
+#8 27.80 CJS build/lib/server-util/clearTemp.js                      2.14 KB
+#8 27.80 CJS build/lib/hooks/useVersion.js                           2.08 KB
+#8 27.80 CJS build/lib/server-util/requerySize.js                    2.89 KB
+#8 27.80 CJS build/lib/ssr/constants.js                              1.35 KB
+#8 27.80 CJS build/lib/store/view.js                                 1.50 KB
+#8 27.80 CJS build/lib/tasks/index.js                                3.58 KB
+#8 27.80 CJS build/lib/theme/index.js                                2.69 KB
+#8 27.80 CJS build/lib/store/settings.js                             1.66 KB
+#8 27.80 CJS build/lib/uploader/formatFileName.js                    2.68 KB
+#8 27.80 CJS build/lib/theme/file.js                                 5.50 KB
+#8 27.80 CJS build/lib/store/uploadOptions.js                        2.86 KB
+#8 27.80 CJS build/lib/store/user.js                                 1.20 KB
+#8 27.80 CJS build/lib/uploader/randomWords.js                       2.76 KB
+#8 27.80 CJS build/lib/webhooks/http.js                              3.31 KB
+#8 27.80 CJS build/lib/webhooks/index.js                             1.47 KB
+#8 27.80 CJS build/lib/uploader/parseHeaders.js                      7.09 KB
+#8 27.80 CJS build/lib/theme/color.js                                1.58 KB
+#8 27.80 CJS build/prisma/models/Metric.js                           777.00 B
+#8 27.80 CJS build/lib/code.js                                       1.33 KB
+#8 27.80 CJS build/prisma/models/Invite.js                           777.00 B
+#8 27.80 CJS build/prisma/models/Folder.js                           777.00 B
+#8 27.80 CJS build/prisma/models/OAuthProvider.js                    798.00 B
+#8 27.80 CJS build/prisma/models/Tag.js                              768.00 B
+#8 27.80 CJS build/prisma/models/User.js                             771.00 B
+#8 27.80 CJS build/prisma/models/Thumbnail.js                        786.00 B
+#8 27.80 CJS build/prisma/models/Url.js                              768.00 B
+#8 27.80 CJS build/server/middleware/user.js                         3.60 KB
+#8 27.80 CJS build/prisma/internal/prismaNamespace.js                13.74 KB
+#8 27.80 CJS build/prisma/models/UserQuota.js                        786.00 B
+#8 27.80 CJS build/server/plugins/checkRateLimit.js                  1.35 KB
+#8 27.80 CJS build/server/plugins/vite.js                            5.19 KB
+#8 27.80 CJS build/server/routes/invites.js                          2.05 KB
+#8 27.80 CJS build/prisma/models/Zipline.js                          780.00 B
+#8 27.80 CJS build/prisma/models/UserPasskey.js                      792.00 B
+#8 27.80 CJS build/server/routes/urls.dy.js                          2.38 KB
+#8 27.80 CJS build/server/routes/favicon.js                          2.02 KB
+#8 27.80 CJS build/server/routes/robots.txt.js                       2.09 KB
+#8 27.80 CJS build/server/routes/index.js                            2.25 KB
+#8 27.80 CJS build/lib/config/read/transform.js                      3.46 KB
+#8 27.80 CJS build/server/routes/files.dy.js                         1.62 KB
+#8 27.80 CJS build/lib/config/read/env.js                            11.21 KB
+#8 27.80 CJS build/lib/db/migration/index.js                         2.61 KB
+#8 27.80 CJS build/lib/db/models/incompleteFile.js                   1.30 KB
+#8 27.80 CJS build/lib/config/read/index.js                          4.99 KB
+#8 27.80 CJS build/prisma/models/Export.js                           777.00 B
+#8 27.80 CJS build/lib/db/models/invite.js                           1.17 KB
+#8 27.80 CJS build/lib/db/models/file.js                             2.27 KB
+#8 27.80 CJS build/lib/db/models/url.js                              1.17 KB
+#8 27.80 CJS build/lib/tasks/run/thumbnails.js                       2.13 KB
+#8 27.80 CJS build/server/routes/manifest.json.js                    2.63 KB
+#8 27.80 CJS build/lib/db/models/metric.js                           1.86 KB
+#8 27.80 CJS build/lib/db/models/tag.js                              1.35 KB
+#8 27.80 CJS build/lib/import/version3/validateExport.js             10.15 KB
+#8 27.80 CJS build/lib/tasks/run/clearInvites.js                     2.02 KB
+#8 27.80 CJS build/lib/db/models/zipline.js                          1.32 KB
+#8 27.80 CJS build/server/routes/api/setup.js                        3.36 KB
+#8 27.80 CJS build/server/routes/api/auth/register.js                4.41 KB
+#8 27.80 CJS build/lib/tasks/run/maxViews.js                         2.94 KB
+#8 27.80 CJS build/server/routes/api/stats.js                        3.41 KB
+#8 27.80 CJS build/lib/db/models/user.js                             1.92 KB
+#8 27.80 CJS build/server/routes/api/version.js                      3.22 KB
+#8 27.80 CJS build/server/routes/api/server/clear_temp.js            2.68 KB
+#8 27.80 CJS build/server/routes/api/auth/webauthn.js                3.58 KB
+#8 27.80 CJS build/server/routes/api/auth/logout.js                  2.73 KB
+#8 27.80 CJS build/server/routes/api/server/clear_zeros.js           3.08 KB
+#8 27.80 CJS build/server/routes/api/server/folder.js                2.69 KB
+#8 27.80 CJS build/server/routes/api/server/requery_size.js          2.92 KB
+#8 27.80 CJS build/server/routes/api/user/avatar.js                  2.29 KB
+#8 27.80 CJS build/server/routes/api/server/public.js                4.30 KB
+#8 27.80 CJS build/server/routes/api/server/thumbnails.js            3.02 KB
+#8 27.80 CJS build/server/routes/api/upload/partial.js               11.36 KB
+#8 27.80 CJS build/server/routes/api/server/themes.js                2.14 KB
+#8 27.80 CJS build/server/routes/api/user/export.js                  7.71 KB
+#8 27.80 CJS build/server/routes/api/user/recent.js                  2.58 KB
+#8 27.80 CJS build/lib/tasks/run/metrics.js                          1.28 KB
+#8 27.80 CJS build/server/routes/api/user/token.js                   3.32 KB
+#8 27.80 CJS build/server/routes/api/user/sessions.js                3.94 KB
+#8 27.80 CJS build/server/routes/api/users/index.js                  4.59 KB
+#8 27.80 CJS build/server/routes/api/user/index.js                   5.20 KB
+#8 27.80 CJS build/server/routes/api/auth/oauth/discord.js           5.13 KB
+#8 27.80 CJS build/lib/uploader/wordlists/animals.js                 27.47 KB
+#8 27.80 CJS build/server/routes/api/auth/oauth/index.js             3.24 KB
+#8 27.80 CJS build/server/routes/api/auth/oauth/google.js            4.43 KB
+#8 27.80 CJS build/server/routes/api/auth/invites/index.js           3.71 KB
+#8 27.80 CJS build/server/routes/api/user/stats.js                   3.55 KB
+#8 27.80 CJS build/server/routes/api/auth/invites/[id].js            3.71 KB
+#8 27.80 CJS build/server/routes/api/auth/oauth/oidc.js              4.72 KB
+#8 27.80 CJS build/server/routes/api/user/files/index.js             7.83 KB
+#8 27.80 CJS build/server/routes/api/server/settings/index.js        17.14 KB
+#8 27.80 CJS build/server/routes/api/user/mfa/totp.js                4.59 KB
+#8 27.80 CJS build/server/routes/api/user/urls/index.js              6.72 KB
+#8 27.80 CJS build/server/routes/api/user/files/[id]/raw.js          6.18 KB
+#8 27.80 CJS build/server/routes/api/user/folders/[id].js            7.24 KB
+#8 27.80 CJS build/server/routes/api/user/tags/index.js              3.35 KB
+#8 27.80 CJS build/server/routes/api/user/files/transaction.js       5.36 KB
+#8 27.80 CJS build/prisma/models/IncompleteFile.js                   801.00 B
+#8 27.80 CJS build/server/routes/api/user/urls/[id]/password.js      3.23 KB
+#8 27.80 CJS build/server/routes/api/user/files/[id]/password.js     3.24 KB
+#8 27.80 CJS build/ctl/commands/export-config.js.map                 4.64 KB
+#8 27.80 CJS build/lib/api/range.js.map                              977.00 B
+#8 27.80 CJS build/server/middleware/administrator.js.map            639.00 B
+#8 27.80 CJS build/prisma/internal/class.js.map                      50.00 KB
+#8 27.80 CJS build/lib/db/migration/index.d.js.map                   71.00 B
+#8 27.80 CJS build/lib/import/version3/find.js.map                   781.00 B
+#8 27.80 CJS build/lib/config/read/db.js.map                         7.92 KB
+#8 27.80 CJS build/lib/tasks/run/deleteFiles.js.map                  2.23 KB
+#8 27.80 CJS build/lib/theme/builtins/dark_blue.js.map               1.19 KB
+#8 27.80 CJS build/server/routes/api/auth/invites/web.js.map         2.39 KB
+#8 27.80 CJS build/lib/uploader/wordlists/adjectives.js.map          35.78 KB
+#8 27.80 CJS build/server/routes/api/server/import/v3.js.map         14.95 KB
+#8 27.80 CJS build/ctl/index.js.map                                  2.92 KB
+#8 27.80 CJS build/offload/partial.js.map                            10.69 KB
+#8 27.80 CJS build/lib/hooks/useAvatar.js.map                        864.00 B
+#8 27.80 CJS build/server/routes/api/user/files/[id]/index.js.map    7.89 KB
+#8 27.80 CJS build/lib/gps/constants.js.map                          757.00 B
+#8 27.80 CJS build/lib/server-util/clearZeros.js.map                 1.96 KB
+#8 27.80 CJS build/lib/oauth/enabled.js.map                          1.74 KB
+#8 27.80 CJS build/lib/parser/index.js.map                           22.20 KB
+#8 27.80 CJS build/server/routes/api/user/urls/[id]/index.js.map     6.37 KB
+#8 27.80 CJS build/lib/ssr/createZiplineSsr.js.map                   479.00 B
+#8 27.80 CJS build/lib/store/fileTableSettings.js.map                2.93 KB
+#8 27.80 CJS build/lib/webhooks/discord.js.map                       9.41 KB
+#8 27.80 CJS build/lib/datasource/Local.js.map                       4.78 KB
+#8 27.80 CJS build/prisma/models/File.js.map                         88.81 KB
+#8 27.80 CJS build/lib/db/models/folder.js.map                       1.33 KB
+#8 27.80 CJS build/server/routes/api/healthcheck.js.map              1.47 KB
+#8 27.80 CJS build/server/plugins/oauth.js.map                       10.84 KB
+#8 27.80 CJS build/server/routes/api/auth/login.js.map               4.24 KB
+#8 27.80 CJS build/server/routes/raw/[id].js.map                     9.40 KB
+#8 27.80 CJS build/server/routes/api/upload/index.js.map             14.42 KB
+#8 27.80 CJS build/server/routes/api/users/[id].js.map               11.74 KB
+#8 27.80 CJS build/server/routes/api/user/folders/index.js.map       4.76 KB
+#8 27.80 CJS build/server/routes/api/auth/oauth/github.js.map        4.68 KB
+#8 27.80 CJS build/server/routes/api/server/settings/web.js.map      2.23 KB
+#8 27.80 CJS build/server/routes/api/user/files/incomplete.js.map    2.98 KB
+#8 27.80 CJS build/server/routes/api/user/tags/[id].js.map           3.87 KB
+#8 27.80 CJS build/lib/cookie.js.map                                 1.00 KB
+#8 27.80 CJS build/server/routes/api/user/mfa/passkey.js.map         4.43 KB
+#8 27.80 CJS build/lib/fetchApi.js.map                               1.78 KB
+#8 27.80 CJS build/lib/compress.js.map                               2.62 KB
+#8 27.80 CJS build/lib/fs.js.map                                     486.00 B
+#8 27.80 CJS build/lib/logger.js.map                                 5.07 KB
+#8 27.80 CJS build/lib/mimes.js.map                                  801.00 B
+#8 27.80 CJS build/lib/crypto.js.map                                 4.61 KB
+#8 27.80 CJS build/lib/base64.js.map                                 1.18 KB
+#8 27.80 CJS build/lib/primitive.js.map                              638.00 B
+#8 27.80 CJS build/lib/random.js.map                                 1.60 KB
+#8 27.80 CJS build/lib/totp.js.map                                   956.00 B
+#8 27.80 CJS build/lib/role.js.map                                   1.02 KB
+#8 27.80 CJS build/lib/relativeTime.js.map                           1.18 KB
+#8 27.80 CJS build/offload/thumbnails.js.map                         9.23 KB
+#8 27.80 CJS build/offload/proxiedDb.js.map                          1.44 KB
+#8 27.80 CJS build/prisma/client.js.map                              3.15 KB
+#8 27.80 CJS build/lib/stats.js.map                                  3.61 KB
+#8 27.80 CJS build/prisma/enums.js.map                               1.45 KB
+#8 27.80 CJS build/lib/url.js.map                                    577.00 B
+#8 27.80 CJS build/lib/version.js.map                                1.39 KB
+#8 27.80 CJS build/prisma/commonInputTypes.js.map                    41.25 KB
+#8 27.80 CJS build/server/index.js.map                               15.51 KB
+#8 27.80 CJS build/lib/response.js.map                               430.00 B
+#8 27.80 CJS build/server/session.js.map                             2.98 KB
+#8 27.80 CJS build/lib/passkey.js.map                                1.62 KB
+#8 27.80 CJS build/lib/bytes.js.map                                  728.00 B
+#8 27.80 CJS build/lib/api/response.js.map                           5.63 KB
+#8 27.80 CJS build/ctl/commands/list-users.js.map                    1.52 KB
+#8 27.80 CJS build/ctl/commands/import-dir.js.map                    6.23 KB
+#8 27.80 CJS build/lib/ratelimits.js.map                             410.00 B
+#8 27.80 CJS build/prisma/models.js.map                              954.00 B
+#8 27.80 CJS build/ctl/commands/set-user.js.map                      2.14 KB
+#8 27.80 CJS build/lib/config/safe.js.map                            1.24 KB
+#8 27.80 CJS build/ctl/commands/read-config.js.map                   652.00 B
+#8 27.80 CJS build/lib/config/index.js.map                           671.00 B
+#8 27.80 CJS build/lib/datasource/index.js.map                       2.73 KB
+#8 27.80 CJS build/lib/db/index.js.map                               3.54 KB
+#8 27.80 CJS build/lib/config/validate.js.map                        21.73 KB
+#8 27.80 CJS build/lib/hooks/useLogin.js.map                         1.71 KB
+#8 27.80 CJS build/lib/datasource/Datasource.js.map                  926.00 B
+#8 27.80 CJS build/lib/oauth/providerUtil.js.map                     4.52 KB
+#8 27.80 CJS build/lib/hooks/useTitle.js.map                         1.01 KB
+#8 27.80 CJS build/lib/datasource/S3.js.map                          17.78 KB
+#8 27.80 CJS build/lib/parser/metrics.js.map                         2.46 KB
+#8 27.80 CJS build/lib/hooks/useQueryState.js.map                    1.74 KB
+#8 27.80 CJS build/lib/server-util/clearTemp.js.map                  1.67 KB
+#8 27.80 CJS build/lib/hooks/useVersion.js.map                       1.17 KB
+#8 27.80 CJS build/lib/server-util/requerySize.js.map                3.28 KB
+#8 27.80 CJS build/lib/ssr/constants.js.map                          392.00 B
+#8 27.80 CJS build/lib/store/view.js.map                             1.17 KB
+#8 27.80 CJS build/lib/gps/index.js.map                              6.43 KB
+#8 27.80 CJS build/lib/tasks/index.js.map                            5.71 KB
+#8 27.80 CJS build/lib/store/settings.js.map                         1.42 KB
+#8 27.80 CJS build/lib/uploader/formatFileName.js.map                1.58 KB
+#8 27.80 CJS build/lib/theme/index.js.map                            3.25 KB
+#8 27.80 CJS build/lib/store/uploadOptions.js.map                    3.95 KB
+#8 27.80 CJS build/lib/theme/file.js.map                             5.74 KB
+#8 27.80 CJS build/lib/uploader/randomWords.js.map                   1.95 KB
+#8 27.80 CJS build/lib/store/user.js.map                             565.00 B
+#8 27.80 CJS build/lib/webhooks/http.js.map                          4.42 KB
+#8 27.80 CJS build/lib/webhooks/index.js.map                         1.06 KB
+#8 27.80 CJS build/lib/uploader/parseHeaders.js.map                  11.29 KB
+#8 27.80 CJS build/lib/theme/color.js.map                            1.18 KB
+#8 27.80 CJS build/lib/code.js.map                                   717.00 B
+#8 27.80 CJS build/prisma/models/Metric.js.map                       37.99 KB
+#8 27.80 CJS build/prisma/models/Invite.js.map                       53.77 KB
+#8 27.80 CJS build/prisma/models/Folder.js.map                       56.40 KB
+#8 27.80 CJS build/prisma/models/OAuthProvider.js.map                58.83 KB
+#8 27.80 CJS build/prisma/models/Tag.js.map                          56.19 KB
+#8 27.80 CJS build/server/middleware/user.js.map                     4.01 KB
+#8 27.80 CJS build/server/plugins/checkRateLimit.js.map              659.00 B
+#8 27.80 CJS build/prisma/models/Thumbnail.js.map                    46.43 KB
+#8 27.80 CJS build/prisma/models/User.js.map                         126.63 KB
+#8 27.80 CJS build/server/plugins/vite.js.map                        6.58 KB
+#8 27.80 CJS build/prisma/models/Url.js.map                          56.43 KB
+#8 27.80 CJS build/server/routes/invites.js.map                      908.00 B
+#8 27.80 CJS build/prisma/models/UserQuota.js.map                    53.16 KB
+#8 27.80 CJS build/prisma/internal/prismaNamespace.js.map            76.68 KB
+#8 27.80 CJS build/server/routes/urls.dy.js.map                      2.76 KB
+#8 27.80 CJS build/server/routes/robots.txt.js.map                   832.00 B
+#8 27.80 CJS build/prisma/models/UserPasskey.js.map                  53.78 KB
+#8 27.80 CJS build/server/routes/index.js.map                        1.47 KB
+#8 27.80 CJS build/lib/db/migration/index.js.map                     2.53 KB
+#8 27.80 CJS build/lib/config/read/transform.js.map                  3.54 KB
+#8 27.80 CJS build/server/routes/files.dy.js.map                     1.41 KB
+#8 27.80 CJS build/lib/db/models/incompleteFile.js.map               871.00 B
+#8 27.80 CJS build/server/routes/favicon.js.map                      778.00 B
+#8 27.80 CJS build/lib/config/read/env.js.map                        16.56 KB
+#8 27.80 CJS build/prisma/models/Zipline.js.map                      179.42 KB
+#8 27.80 CJS build/lib/db/models/file.js.map                         2.61 KB
+#8 27.80 CJS build/lib/config/read/index.js.map                      7.57 KB
+#8 27.80 CJS build/lib/db/models/invite.js.map                       598.00 B
+#8 27.80 CJS build/lib/db/models/url.js.map                          532.00 B
+#8 27.80 CJS build/prisma/models/Export.js.map                       52.64 KB
+#8 27.80 CJS build/server/routes/manifest.json.js.map                1.69 KB
+#8 27.80 CJS build/lib/tasks/run/thumbnails.js.map                   2.48 KB
+#8 27.80 CJS build/lib/db/models/metric.js.map                       1.53 KB
+#8 27.80 CJS build/lib/tasks/run/clearInvites.js.map                 2.24 KB
+#8 27.80 CJS build/lib/import/version3/validateExport.js.map         16.46 KB
+#8 27.80 CJS build/server/routes/api/setup.js.map                    3.01 KB
+#8 27.80 CJS build/lib/db/models/tag.js.map                          872.00 B
+#8 27.80 CJS build/lib/tasks/run/maxViews.js.map                     3.84 KB
+#8 27.80 CJS build/server/routes/api/auth/register.js.map            4.76 KB
+#8 27.80 CJS build/lib/db/models/zipline.js.map                      639.00 B
+#8 27.80 CJS build/server/routes/api/stats.js.map                    3.27 KB
+#8 27.80 CJS build/lib/db/models/user.js.map                         2.12 KB
+#8 27.81 CJS build/server/routes/api/server/clear_temp.js.map        1.72 KB
+#8 27.81 CJS build/server/routes/api/version.js.map                  3.18 KB
+#8 27.81 CJS build/server/routes/api/auth/logout.js.map              2.01 KB
+#8 27.81 CJS build/server/routes/api/user/avatar.js.map              1.40 KB
+#8 27.81 CJS build/server/routes/api/server/clear_zeros.js.map       2.36 KB
+#8 27.81 CJS build/server/routes/api/server/folder.js.map            2.07 KB
+#8 27.81 CJS build/server/routes/api/server/requery_size.js.map      2.17 KB
+#8 27.81 CJS build/server/routes/api/server/public.js.map            4.83 KB
+#8 27.81 CJS build/server/routes/api/server/thumbnails.js.map        2.39 KB
+#8 27.81 CJS build/server/routes/api/auth/webauthn.js.map            3.53 KB
+#8 27.81 CJS build/server/routes/api/upload/partial.js.map           16.03 KB
+#8 27.81 CJS build/server/routes/api/server/themes.js.map            1.13 KB
+#8 27.81 CJS build/lib/tasks/run/metrics.js.map                      873.00 B
+#8 27.81 CJS build/server/routes/api/user/recent.js.map              1.80 KB
+#8 27.81 CJS build/server/routes/api/users/index.js.map              4.92 KB
+#8 27.81 CJS build/server/routes/api/user/sessions.js.map            4.09 KB
+#8 27.81 CJS build/server/routes/api/auth/oauth/discord.js.map       5.73 KB
+#8 27.81 CJS build/server/routes/api/user/token.js.map               2.89 KB
+#8 27.81 CJS build/server/routes/api/user/export.js.map              10.50 KB
+#8 27.81 CJS build/server/routes/api/user/index.js.map               6.59 KB
+#8 27.81 CJS build/server/routes/api/auth/oauth/index.js.map         3.05 KB
+#8 27.81 CJS build/server/routes/api/auth/invites/index.js.map       3.34 KB
+#8 27.81 CJS build/lib/uploader/wordlists/animals.js.map             45.49 KB
+#8 27.81 CJS build/server/routes/api/auth/oauth/google.js.map        4.64 KB
+#8 27.81 CJS build/server/routes/api/user/stats.js.map               3.85 KB
+#8 27.81 CJS build/server/routes/api/auth/invites/[id].js.map        3.58 KB
+#8 27.81 CJS build/server/routes/api/auth/oauth/oidc.js.map          5.02 KB
+#8 27.81 CJS build/server/routes/api/server/settings/index.js.map    25.77 KB
+#8 27.81 CJS build/server/routes/api/user/mfa/totp.js.map            5.36 KB
+#8 27.81 CJS build/server/routes/api/user/files/[id]/raw.js.map      8.18 KB
+#8 27.81 CJS build/server/routes/api/user/urls/index.js.map          8.95 KB
+#8 27.81 CJS build/server/routes/api/user/tags/index.js.map          3.09 KB
+#8 27.81 CJS build/server/routes/api/user/files/transaction.js.map   6.62 KB
+#8 27.81 CJS build/server/routes/api/user/folders/[id].js.map        9.53 KB
+#8 27.81 CJS build/server/routes/api/user/files/index.js.map         11.88 KB
+#8 27.81 CJS build/prisma/models/IncompleteFile.js.map               59.04 KB
+#8 27.81 CJS build/server/routes/api/user/urls/[id]/password.js.map  3.05 KB
+#8 27.81 CJS build/server/routes/api/user/files/[id]/password.js.map 3.04 KB
+#8 27.81 CJS ⚡️ Build success in 411ms
+#8 27.81 [ts] replacing ts paths...
+#8 27.91 [built-ins] copying builtins...
+#8 27.96 
+#8 27.96 > Running step "build/client"...
+#8 27.96 
+#8 28.58 vite v7.1.4 building for production...
+#8 28.77 transforming...
+#8 55.06 ✓ 8290 modules transformed.
+#8 56.48 rendering chunks...
+#8 57.04 [plugin vite:reporter] 
+#8 57.04 (!) /zipline/src/components/pages/metrics/parts/StatsCards.tsx is dynamically imported by /zipline/src/components/pages/metrics/index.tsx but also statically imported by /zipline/src/components/pages/metrics/index.tsx, dynamic import will not move module into another chunk.
+#8 57.04 
+#8 57.04 [plugin vite:reporter] 
+#8 57.04 (!) /zipline/src/components/pages/metrics/parts/StatsTables.tsx is dynamically imported by /zipline/src/components/pages/metrics/index.tsx but also statically imported by /zipline/src/components/pages/metrics/index.tsx, dynamic import will not move module into another chunk.
+#8 57.04 
+#8 57.30 computing gzip size...
+#8 57.45 ../../build/client/ssr-view-url/index.html                            0.58 kB │ gzip:   0.32 kB
+#8 57.45 ../../build/client/index.html                                         0.64 kB │ gzip:   0.33 kB
+#8 57.45 ../../build/client/ssr-view/index.html                                2.10 kB │ gzip:   0.60 kB
+#8 57.45 ../../build/client/assets/KaTeX_Size3-Regular-CTq5MqoE.woff           4.42 kB
+#8 57.45 ../../build/client/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2          4.93 kB
+#8 57.45 ../../build/client/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2          5.21 kB
+#8 57.45 ../../build/client/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2          5.47 kB
+#8 57.45 ../../build/client/assets/KaTeX_Size4-Regular-BF-4gkZK.woff           5.98 kB
+#8 57.45 ../../build/client/assets/KaTeX_Size2-Regular-oD1tc_U0.woff           6.19 kB
+#8 57.45 ../../build/client/assets/KaTeX_Size1-Regular-C195tn64.woff           6.50 kB
+#8 57.45 ../../build/client/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2    6.91 kB
+#8 57.45 ../../build/client/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2       6.91 kB
+#8 57.45 ../../build/client/assets/KaTeX_Size3-Regular-DgpXs0kz.ttf            7.59 kB
+#8 57.45 ../../build/client/assets/KaTeX_Caligraphic-Regular-CTRA-rTL.woff     7.66 kB
+#8 57.45 ../../build/client/assets/KaTeX_Caligraphic-Bold-BEiXGLvX.woff        7.72 kB
+#8 57.45 ../../build/client/assets/KaTeX_Script-Regular-D3wIWfF6.woff2         9.64 kB
+#8 57.45 ../../build/client/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2     10.34 kB
+#8 57.45 ../../build/client/assets/KaTeX_Size4-Regular-DWFBv043.ttf           10.36 kB
+#8 57.45 ../../build/client/assets/KaTeX_Script-Regular-D5yQViql.woff         10.59 kB
+#8 57.45 ../../build/client/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2       11.32 kB
+#8 57.45 ../../build/client/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2          11.35 kB
+#8 57.45 ../../build/client/assets/KaTeX_Size2-Regular-B7gKUWhC.ttf           11.51 kB
+#8 57.45 ../../build/client/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2      12.03 kB
+#8 57.45 ../../build/client/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2        12.22 kB
+#8 57.45 ../../build/client/assets/KaTeX_Size1-Regular-Dbsnue_I.ttf           12.23 kB
+#8 57.45 ../../build/client/assets/KaTeX_SansSerif-Regular-CS6fqUqJ.woff      12.32 kB
+#8 57.45 ../../build/client/assets/KaTeX_Caligraphic-Regular-wX97UBjC.ttf     12.34 kB
+#8 57.45 ../../build/client/assets/KaTeX_Caligraphic-Bold-ATXxdsX0.ttf        12.37 kB
+#8 57.45 ../../build/client/assets/KaTeX_Fraktur-Regular-Dxdc4cR9.woff        13.21 kB
+#8 57.45 ../../build/client/assets/KaTeX_Fraktur-Bold-BsDP51OF.woff           13.30 kB
+#8 57.45 ../../build/client/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2    13.57 kB
+#8 57.45 ../../build/client/assets/KaTeX_SansSerif-Italic-DN2j7dab.woff       14.11 kB
+#8 57.45 ../../build/client/assets/KaTeX_SansSerif-Bold-DbIhKOiC.woff         14.41 kB
+#8 57.45 ../../build/client/assets/KaTeX_Typewriter-Regular-C0xS9mPB.woff     16.03 kB
+#8 57.45 ../../build/client/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2       16.40 kB
+#8 57.45 ../../build/client/assets/KaTeX_Math-Italic-t53AETM-.woff2           16.44 kB
+#8 57.45 ../../build/client/assets/KaTeX_Script-Regular-C5JkGWo-.ttf          16.65 kB
+#8 57.45 ../../build/client/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2       16.78 kB
+#8 57.45 ../../build/client/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2           16.99 kB
+#8 57.45 ../../build/client/assets/KaTeX_Math-BoldItalic-iY-2wyZ7.woff        18.67 kB
+#8 57.45 ../../build/client/assets/KaTeX_Math-Italic-DA0__PXp.woff            18.75 kB
+#8 57.45 ../../build/client/assets/KaTeX_Main-BoldItalic-SpSLRI95.woff        19.41 kB
+#8 57.45 ../../build/client/assets/KaTeX_SansSerif-Regular-BNo7hRIc.ttf       19.44 kB
+#8 57.45 ../../build/client/assets/KaTeX_Fraktur-Regular-CB_wures.ttf         19.57 kB
+#8 57.45 ../../build/client/assets/KaTeX_Fraktur-Bold-BdnERNNW.ttf            19.58 kB
+#8 57.45 ../../build/client/assets/KaTeX_Main-Italic-BMLOBm91.woff            19.68 kB
+#8 57.45 ../../build/client/assets/KaTeX_SansSerif-Italic-YYjJ1zSn.ttf        22.36 kB
+#8 57.45 ../../build/client/assets/KaTeX_SansSerif-Bold-CFMepnvq.ttf          24.50 kB
+#8 57.45 ../../build/client/assets/KaTeX_Main-Bold-Cx986IdX.woff2             25.32 kB
+#8 57.45 ../../build/client/assets/KaTeX_Main-Regular-B22Nviop.woff2          26.27 kB
+#8 57.45 ../../build/client/assets/KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf      27.56 kB
+#8 57.45 ../../build/client/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2           28.08 kB
+#8 57.45 ../../build/client/assets/KaTeX_Main-Bold-Jm3AIy58.woff              29.91 kB
+#8 57.45 ../../build/client/assets/KaTeX_Main-Regular-Dr94JaBh.woff           30.77 kB
+#8 57.45 ../../build/client/assets/KaTeX_Math-BoldItalic-B3XSjfu4.ttf         31.20 kB
+#8 57.45 ../../build/client/assets/KaTeX_Math-Italic-flOr_0UB.ttf             31.31 kB
+#8 57.45 ../../build/client/assets/KaTeX_Main-BoldItalic-DzxPMmG6.ttf         32.97 kB
+#8 57.45 ../../build/client/assets/KaTeX_AMS-Regular-DMm9YOAa.woff            33.52 kB
+#8 57.45 ../../build/client/assets/KaTeX_Main-Italic-3WenGoN9.ttf             33.58 kB
+#8 57.45 ../../build/client/assets/KaTeX_Main-Bold-waoOVXN0.ttf               51.34 kB
+#8 57.45 ../../build/client/assets/KaTeX_Main-Regular-ypZvNtVU.ttf            53.58 kB
+#8 57.45 ../../build/client/assets/KaTeX_AMS-Regular-DRggAlZN.ttf             63.63 kB
+#8 57.45 ../../build/client/assets/index-advU6ofe.css                          0.06 kB │ gzip:   0.08 kB
+#8 57.45 ../../build/client/assets/text-B6LnsR6b.css                           0.06 kB │ gzip:   0.08 kB
+#8 57.45 ../../build/client/assets/index-ExN7h7nE.css                          0.16 kB │ gzip:   0.14 kB
+#8 57.45 ../../build/client/assets/main-PR-CPorv.css                           0.26 kB │ gzip:   0.18 kB
+#8 57.45 ../../build/client/assets/HighlightCode-DPxLeClJ.css                  2.09 kB │ gzip:   0.53 kB
+#8 57.45 ../../build/client/assets/Render-DVneG3Rq.css                        28.81 kB │ gzip:   8.01 kB
+#8 57.45 ../../build/client/assets/asciinema-player-B3-lq64G.css              37.44 kB │ gzip:   6.14 kB
+#8 57.45 ../../build/client/assets/styles-1mK-5MS0.css                       248.18 kB │ gzip:  35.22 kB
+#8 57.45 ../../build/client/assets/get-base-value-JqT_q0U7.js                  0.09 kB │ gzip:   0.11 kB
+#8 57.45 ../../build/client/assets/get-env-uyVen0u2.js                         0.09 kB │ gzip:   0.11 kB
+#8 57.45 ../../build/client/assets/get-safe-id-Bp3H8K0-.js                     0.12 kB │ gzip:   0.13 kB
+#8 57.45 ../../build/client/assets/url-BGYElwhu.js                             0.14 kB │ gzip:   0.13 kB
+#8 57.45 ../../build/client/assets/clamp-DTmYCdls.js                           0.15 kB │ gzip:   0.11 kB
+#8 57.45 ../../build/client/assets/constants-B_3okVlx.js                       0.25 kB │ gzip:   0.21 kB
+#8 57.45 ../../build/client/assets/color-BtS3VOPO.js                           0.30 kB │ gzip:   0.25 kB
+#8 57.45 ../../build/client/assets/RelativeDate-DF1WzgS3.js                    0.32 kB │ gzip:   0.24 kB
+#8 57.45 ../../build/client/assets/warningModal-DbqlUa-1.js                    0.33 kB │ gzip:   0.25 kB
+#8 57.45 ../../build/client/assets/IconCheck-CalnCliG.js                       0.33 kB │ gzip:   0.27 kB
+#8 57.45 ../../build/client/assets/CopyButton-C8EuCJW6.js                      0.35 kB │ gzip:   0.27 kB
+#8 57.45 ../../build/client/assets/IconPlus-D7ng3vfh.js                        0.37 kB │ gzip:   0.28 kB
+#8 57.45 ../../build/client/assets/IconArrowBackUp-Bo5AYPN2.js                 0.40 kB │ gzip:   0.31 kB
+#8 57.45 ../../build/client/assets/IconPencil-DtTKRK0y.js                      0.42 kB │ gzip:   0.31 kB
+#8 57.45 ../../build/client/assets/IconRefresh-epwq00-V.js                     0.43 kB │ gzip:   0.31 kB
+#8 57.45 ../../build/client/assets/IconDownload-D-KShPlV.js                    0.45 kB │ gzip:   0.31 kB
+#8 57.45 ../../build/client/assets/IconFolderPlus-Cb1wapDB.js                  0.47 kB │ gzip:   0.32 kB
+#8 57.45 ../../build/client/assets/IconLogin-cessCu1Z.js                       0.48 kB │ gzip:   0.32 kB
+#8 57.45 ../../build/client/assets/IconDots-sMt9Dsi3.js                        0.49 kB │ gzip:   0.30 kB
+#8 57.45 ../../build/client/assets/IconVideo-BN2W87ir.js                       0.51 kB │ gzip:   0.34 kB
+#8 57.45 ../../build/client/assets/IconLock-BKQAEMD6.js                        0.51 kB │ gzip:   0.33 kB
+#8 57.45 ../../build/client/assets/IconDeviceFloppy-1KAnZH6J.js                0.52 kB │ gzip:   0.34 kB
+#8 57.45 ../../build/client/assets/IconFileInfo-DONhpt0E.js                    0.53 kB │ gzip:   0.34 kB
+#8 57.45 ../../build/client/assets/IconUserCancel-D5qeABt-.js                  0.53 kB │ gzip:   0.34 kB
+#8 57.45 ../../build/client/assets/IconUsers-mn13I0fN.js                       0.54 kB │ gzip:   0.34 kB
+#8 57.45 ../../build/client/assets/IconDeviceSdCard-XSJESV7T.js                0.57 kB │ gzip:   0.35 kB
+#8 57.45 ../../build/client/assets/IconPhoto-Zohe9aV-.js                       0.58 kB │ gzip:   0.35 kB
+#8 57.45 ../../build/client/assets/IconFilesOff-Desyrp8Y.js                    0.59 kB │ gzip:   0.37 kB
+#8 57.45 ../../build/client/assets/IconTextRecognition-v4Vy2vHt.js             0.59 kB │ gzip:   0.35 kB
+#8 57.45 ../../build/client/assets/IconCopy-75cFD5UL.js                        0.60 kB │ gzip:   0.37 kB
+#8 57.45 ../../build/client/assets/IconStarFilled-086zCMGT.js                  0.60 kB │ gzip:   0.41 kB
+#8 57.45 ../../build/client/assets/Code-E8i9rK6V.js                            0.62 kB │ gzip:   0.40 kB
+#8 57.45 ../../build/client/assets/IconTagOff-BvXAFwhy.js                      0.66 kB │ gzip:   0.42 kB
+#8 57.45 ../../build/client/assets/IconEyeFilled-DeFXohsT.js                   0.67 kB │ gzip:   0.45 kB
+#8 57.45 ../../build/client/assets/IconTrashFilled-s5IXPoTN.js                 0.68 kB │ gzip:   0.42 kB
+#8 57.45 ../../build/client/assets/FileButton-CcQY5JBW.js                      0.71 kB │ gzip:   0.45 kB
+#8 57.45 ../../build/client/assets/settingsOnSubmit-Veb4-Nr0.js                0.71 kB │ gzip:   0.45 kB
+#8 57.45 ../../build/client/assets/tos-CcAIoZSg.js                             0.76 kB │ gzip:   0.49 kB
+#8 57.45 ../../build/client/assets/dmca-Dycv3rDN.js                            0.78 kB │ gzip:   0.49 kB
+#8 57.45 ../../build/client/assets/Skeleton-Bqed9hpW.js                        0.79 kB │ gzip:   0.47 kB
+#8 57.45 ../../build/client/assets/Image-9PadA1wP.js                           0.83 kB │ gzip:   0.50 kB
+#8 57.45 ../../build/client/assets/IconPencilOff-CvoCN9q4.js                   0.88 kB │ gzip:   0.43 kB
+#8 57.45 ../../build/client/assets/index-VEB9NuyB.js                           0.93 kB │ gzip:   0.56 kB
+#8 57.45 ../../build/client/assets/ColorSwatch-BqAG75KY.js                     1.02 kB │ gzip:   0.54 kB
+#8 57.45 ../../build/client/assets/file-CD1K3RI2.js                            1.22 kB │ gzip:   0.64 kB
+#8 57.45 ../../build/client/assets/Card-D-RHyzNV.js                            1.25 kB │ gzip:   0.66 kB
+#8 57.45 ../../build/client/assets/StorageGraph-CpBy7wEg.js                    1.25 kB │ gzip:   0.66 kB
+#8 57.45 ../../build/client/assets/ViewsGraph-C_DgWUac.js                      1.27 kB │ gzip:   0.68 kB
+#8 57.45 ../../build/client/assets/IconWriting-CRsgf2i8.js                     1.33 kB │ gzip:   0.49 kB
+#8 57.45 ../../build/client/assets/SettingsSessions-qZGlRszE.js                1.37 kB │ gzip:   0.74 kB
+#8 57.45 ../../build/client/assets/bytes-CO1LBjCE.js                           1.37 kB │ gzip:   0.79 kB
+#8 57.45 ../../build/client/assets/Urls-dxh1s3fx.js                            1.40 kB │ gzip:   0.80 kB
+#8 57.45 ../../build/client/assets/ssr-view-url-BGxlIZRb.js                    1.42 kB │ gzip:   0.84 kB
+#8 57.45 ../../build/client/assets/InputsGroupFieldset-D_DOtXza.js             1.46 kB │ gzip:   0.75 kB
+#8 57.45 ../../build/client/assets/PillsInput-DZZ8_JRA.js                      1.52 kB │ gzip:   0.79 kB
+#8 57.45 ../../build/client/assets/HttpWebhook-IT5NefkZ.js                     1.53 kB │ gzip:   0.81 kB
+#8 57.45 ../../build/client/assets/Invites-DphkDibR.js                         1.53 kB │ gzip:   0.84 kB
+#8 57.45 ../../build/client/assets/Alert-DLkiF5RE.js                           1.62 kB │ gzip:   0.83 kB
+#8 57.45 ../../build/client/assets/index-DPckFk07.js                           1.65 kB │ gzip:   0.86 kB
+#8 57.45 ../../build/client/assets/Chunks-Dr7E9s9p.js                          1.68 kB │ gzip:   0.84 kB
+#8 57.45 ../../build/client/assets/Render-CxPjYuMA.js                          1.69 kB │ gzip:   0.85 kB
+#8 57.45 ../../build/client/assets/Mfa-BPf6jtPW.js                             1.71 kB │ gzip:   0.89 kB
+#8 57.45 ../../build/client/assets/base64-CBUPAKmF.js                          1.72 kB │ gzip:   0.92 kB
+#8 57.45 ../../build/client/assets/files-BlOay7L-.js                           1.78 kB │ gzip:   0.95 kB
+#8 57.45 ../../build/client/assets/HighlightCode-B1oa1ny7.js                   2.11 kB │ gzip:   1.18 kB
+#8 57.45 ../../build/client/assets/Tasks-KqwxnOyZ.js                           2.15 kB │ gzip:   0.90 kB
+#8 57.45 ../../build/client/assets/TagPill-hXCUNrRZ.js                         2.15 kB │ gzip:   1.04 kB
+#8 57.45 ../../build/client/assets/upload-DzGbBzRu.js                          2.17 kB │ gzip:   1.14 kB
+#8 57.45 ../../build/client/assets/Core-BrMQ6mYy.js                            2.28 kB │ gzip:   1.08 kB
+#8 57.45 ../../build/client/assets/SimpleGrid-BLErJTcZ.js                      2.31 kB │ gzip:   0.95 kB
+#8 57.45 ../../build/client/assets/index-S96gUHoe.js                           2.57 kB │ gzip:   1.30 kB
+#8 57.45 ../../build/client/assets/SettingsExports-UslkrzA-.js                 2.57 kB │ gzip:   1.18 kB
+#8 57.45 ../../build/client/assets/Domains-BD-5Iy36.js                         2.58 kB │ gzip:   1.37 kB
+#8 57.45 ../../build/client/assets/Ratelimit-CFOn8TL0.js                       2.70 kB │ gzip:   1.20 kB
+#8 57.45 ../../build/client/assets/index-DB4LnBVS.js                           2.73 kB │ gzip:   1.40 kB
+#8 57.45 ../../build/client/assets/Switch-DTf3VNFD.js                          2.87 kB │ gzip:   1.33 kB
+#8 57.45 ../../build/client/assets/PWA-8zFYgLjN.js                             2.93 kB │ gzip:   1.20 kB
+#8 57.45 ../../build/client/assets/SettingsUser-B080jitQ.js                    3.05 kB │ gzip:   1.39 kB
+#8 57.45 ../../build/client/assets/Grid-CnVmKeRB.js                            3.52 kB │ gzip:   1.41 kB
+#8 57.45 ../../build/client/assets/SettingsAvatar-BjIn1WT1.js                  3.53 kB │ gzip:   1.41 kB
+#8 57.45 ../../build/client/assets/Textarea-GlyeCmDT.js                        3.85 kB │ gzip:   1.75 kB
+#8 57.45 ../../build/client/assets/settings-1y5r85RG.js                        3.91 kB │ gzip:   1.58 kB
+#8 57.45 ../../build/client/assets/Table-DZPuqmkw.js                           4.24 kB │ gzip:   1.67 kB
+#8 57.45 ../../build/client/assets/register-CGVpZEwG.js                        4.25 kB │ gzip:   1.90 kB
+#8 57.45 ../../build/client/assets/Accordion-C7VhhnkB.js                       4.63 kB │ gzip:   1.81 kB
+#8 57.45 ../../build/client/assets/Files-CxtkpLXg.js                           4.78 kB │ gzip:   1.64 kB
+#8 57.45 ../../build/client/assets/Checkbox-oZF6VpKR.js                        4.93 kB │ gzip:   1.92 kB
+#8 57.45 ../../build/client/assets/SettingsDashboard-BA6C9x5o.js               5.10 kB │ gzip:   1.84 kB
+#8 57.45 ../../build/client/assets/actions-DqV95mGI.js                         5.25 kB │ gzip:   1.75 kB
+#8 57.45 ../../build/client/assets/settings-DA7PdMfR.js                        5.44 kB │ gzip:   2.05 kB
+#8 57.45 ../../build/client/assets/Features-xwXugpoc.js                        5.49 kB │ gzip:   1.75 kB
+#8 57.45 ../../build/client/assets/SettingsFileView-OLqNjBeJ.js                5.91 kB │ gzip:   2.02 kB
+#8 57.45 ../../build/client/assets/index-DSVtRqdb.js                           6.25 kB │ gzip:   2.21 kB
+#8 57.45 ../../build/client/assets/Website-mZE8VgZm.js                         6.33 kB │ gzip:   2.09 kB
+#8 57.45 ../../build/client/assets/relativeTime-Bo7b4SnZ.js                    6.38 kB │ gzip:   2.44 kB
+#8 57.45 ../../build/client/assets/Oauth-DVKOtJXc.js                           6.59 kB │ gzip:   1.83 kB
+#8 57.45 ../../build/client/assets/dayjs.min-Doz260Uo.js                       7.16 kB │ gzip:   3.12 kB
+#8 57.45 ../../build/client/assets/index-Ca1DOQPh.js                           7.31 kB │ gzip:   2.88 kB
+#8 57.45 ../../build/client/assets/invites-C6Q-Z8BC.js                         7.41 kB │ gzip:   2.77 kB
+#8 57.45 ../../build/client/assets/text-B87pGN3t.js                            7.64 kB │ gzip:   3.26 kB
+#8 57.45 ../../build/client/assets/setup-BNcxXWlB.js                           9.58 kB │ gzip:   3.83 kB
+#8 57.45 ../../build/client/assets/Discord-DvNYX_ww.js                        10.56 kB │ gzip:   2.13 kB
+#8 57.45 ../../build/client/assets/FileModal-iiaz_PiK.js                      10.93 kB │ gzip:   4.34 kB
+#8 57.45 ../../build/client/assets/files-DpYJSyei.js                          11.52 kB │ gzip:   3.98 kB
+#8 57.45 ../../build/client/assets/index-DUBO3pK7.js                          13.75 kB │ gzip:   4.36 kB
+#8 57.45 ../../build/client/assets/urls-084sedng.js                           13.88 kB │ gzip:   4.79 kB
+#8 57.45 ../../build/client/assets/folders-BxS5rKvc.js                        14.48 kB │ gzip:   4.79 kB
+#8 57.45 ../../build/client/assets/index-BvHq-NGL.js                          14.59 kB │ gzip:   4.20 kB
+#8 57.45 ../../build/client/assets/uploadFiles-CEx-Zsqk.js                    15.03 kB │ gzip:   4.93 kB
+#8 57.45 ../../build/client/assets/ColorInput-D5vGN2OL.js                     16.15 kB │ gzip:   6.05 kB
+#8 57.45 ../../build/client/assets/IconShieldLockFilled-BxAl3SiG.js           16.20 kB │ gzip:   6.08 kB
+#8 57.45 ../../build/client/assets/landing-DtymJWY4.js                        18.67 kB │ gzip:   4.65 kB
+#8 57.45 ../../build/client/assets/NumberInput-ROGK_cVx.js                    21.13 kB │ gzip:   8.18 kB
+#8 57.45 ../../build/client/assets/DashboardFileType-CNO36v8e.js              24.39 kB │ gzip:   5.25 kB
+#8 57.45 ../../build/client/assets/ssr-view-Ce0DxZu0.js                       34.38 kB │ gzip:  12.73 kB
+#8 57.45 
+#8 57.45 (!) Some chunks are larger than 500 kB after minification. Consider:
+#8 57.45 - Using dynamic import() to code-split the application
+#8 57.45 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+#8 57.45 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+#8 57.45 ../../build/client/assets/index-vLb93TcV.js                          53.55 kB │ gzip:  16.85 kB
+#8 57.45 ../../build/client/assets/Files-h6EXpOfn.js                          65.30 kB │ gzip:  21.92 kB
+#8 57.45 ../../build/client/assets/index-CP-Cpc65.js                          78.87 kB │ gzip:  23.49 kB
+#8 57.45 ../../build/client/assets/index-DkOpohaa.js                          87.71 kB │ gzip:  24.50 kB
+#8 57.45 ../../build/client/assets/main-mIkl7rR5.js                           87.97 kB │ gzip:  28.43 kB
+#8 57.45 ../../build/client/assets/Markdown-HZT8d0EK.js                      157.03 kB │ gzip:  47.62 kB
+#8 57.45 ../../build/client/assets/index-BgKXX3TK.js                         207.52 kB │ gzip:  80.88 kB
+#8 57.45 ../../build/client/assets/katex-DsmCZfJr.js                         265.43 kB │ gzip:  77.50 kB
+#8 57.45 ../../build/client/assets/metrics-DhyQ1yig.js                       481.48 kB │ gzip: 129.40 kB
+#8 57.45 ../../build/client/assets/styles-BMPDjSfx.js                        503.68 kB │ gzip: 160.02 kB
+#8 57.45 ../../build/client/assets/index-rXZomUWs.js                         969.25 kB │ gzip: 311.91 kB
+#8 57.45 ✓ built in 28.81s
+#8 57.80 
+#8 57.80 > Running step "build/client/ssr/view"...
+#8 57.80 
+#8 58.40 vite v7.1.4 building SSR bundle for ssr-view...
+#8 58.52 transforming...
+#8 60.31 ✓ 70 modules transformed.
+#8 60.47 rendering chunks...
+#8 60.49 [plugin vite:reporter] 
+#8 60.49 (!) /zipline/src/lib/config/index.ts is dynamically imported by /zipline/src/client/ssr-view/server.tsx but also statically imported by /zipline/src/client/ssr-view/server.tsx, /zipline/src/lib/db/models/file.ts, dynamic import will not move module into another chunk.
+#8 60.49 
+#8 60.50 ../../build/ssr/ssr-view.js  134.80 kB
+#8 60.50 ✓ built in 2.07s
+#8 60.55 
+#8 60.55 > Running step "build/client/ssr/view-url"...
+#8 60.55 
+#8 61.01 vite v7.1.4 building SSR bundle for ssr-view-url...
+#8 61.08 transforming...
+#8 61.65 ✓ 32 modules transformed.
+#8 61.74 [plugin vite:reporter] 
+#8 61.74 (!) /zipline/src/lib/config/index.ts is dynamically imported by /zipline/src/client/ssr-view-url/server.tsx but also statically imported by /zipline/src/client/ssr-view-url/server.tsx, dynamic import will not move module into another chunk.
+#8 61.74 
+#8 61.74 rendering chunks...
+#8 61.75 ../../build/ssr/ssr-view-url.js  78.86 kB
+#8 61.75 ✓ built in 712ms
+#8 61.78 
+#8 61.78 ✓ Steps in "build" completed in 59.63s.
+#8 61.78 
+#8 DONE 62.3s
+
+#9 [stage-3 1/6] COPY --from=deps /zipline/node_modules ./node_modules
+#9 CACHED
+
+#10 [stage-3 2/6] COPY --from=builder /zipline/build ./build
+#10 DONE 0.2s
+
+#11 [builder  6/14] COPY eslint.config.mjs ./eslint.config.mjs
+#11 CACHED
+
+#12 [builder  9/14] COPY tsconfig.json ./tsconfig.json
+#12 CACHED
+
+#13 [base 7/7] COPY pnpm-lock.yaml .
+#13 CACHED
+
+#14 [builder  1/14] RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+#14 CACHED
+
+#15 [stage-3 1/6] COPY --from=deps /zipline/node_modules ./node_modules
+#15 CACHED
+
+#16 [builder  2/14] COPY src ./src
+#16 CACHED
+
+#17 [builder  4/14] COPY postcss.config.cjs ./postcss.config.cjs
+#17 CACHED
+
+#18 [builder  7/14] COPY vite.config.ts ./vite.config.ts
+#18 CACHED
+
+#19 [builder 12/14] COPY vite-env.d.ts ./vite-env.d.ts
+#19 CACHED
+
+#20 [base 2/7] RUN corepack enable
+#20 CACHED
+
+#21 [base 4/7] WORKDIR /zipline
+#21 CACHED
+
+#22 [base 5/7] COPY prisma ./prisma
+#22 CACHED
+
+#23 [base 6/7] COPY package.json .
+#23 CACHED
+
+#24 [builder  8/14] COPY tsup.config.ts ./tsup.config.ts
+#24 CACHED
+
+#25 [builder  5/14] COPY prettier.config.cjs ./prettier.config.cjs
+#25 CACHED
+
+#26 [deps 1/1] RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+#26 CACHED
+
+#27 [builder  3/14] COPY .gitignore ./.gitignore
+#27 CACHED
+
+#28 [builder 13/14] COPY scripts ./scripts
+#28 CACHED
+
+#29 [builder 14/14] RUN ZIPLINE_BUILD=true pnpm run build
+#29 CACHED
+
+#30 [stage-3 2/6] COPY --from=builder /zipline/build ./build
+#30 CACHED
+
+#31 [base 3/7] RUN apk add --no-cache ffmpeg tzdata
+#31 CACHED
+
+#32 [builder 10/14] COPY mimes.json ./mimes.json
+#32 CACHED
+
+#33 [builder 11/14] COPY code.json ./code.json
+#33 CACHED
+
+#34 [stage-3 3/6] COPY --from=builder /zipline/mimes.json ./mimes.json
+#34 DONE 0.1s
+
+#35 [stage-3 4/6] COPY --from=builder /zipline/code.json ./code.json
+#35 DONE 0.0s
+
+#36 [stage-3 5/6] RUN pnpm prisma generate
+#36 0.418 ! Corepack is about to download https://registry.npmjs.org/pnpm/-/pnpm-10.12.1.tgz
+#36 7.103 Prisma schema loaded from prisma/schema.prisma
+#36 7.506 
+#36 7.506 ✔ Generated Prisma Client (6.13.0) to ./src/prisma in 228ms
+#36 7.506 
+#36 DONE 7.7s
+
+#37 [stage-3 6/6] RUN rm -rf /tmp/* /root/*
+#37 DONE 0.3s
+
+#38 exporting to image
+#38 exporting layers
+#38 exporting layers 0.6s done
+#38 writing image sha256:6d112ce8110403be83e9cabcc1ec4a9fb2574aee8ff0d238a9775e1a61937e78 done
+#38 naming to docker.io/library/sharehost-local:latest 0.0s done
+#38 DONE 0.6s
+
+#39 resolving provenance for metadata file
+#39 DONE 0.0s
+ sharehost-local:latest  Built
