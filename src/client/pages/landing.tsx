@@ -8,12 +8,13 @@ import {
   Stack,
   Text,
   Title,
-  useMantineColorScheme,
-  useMantineTheme,
   Transition,
   rem,
+  useMantineColorScheme,
+  useMantineTheme,
 } from '@mantine/core';
 import {
+  IconArrowRight,
   IconBolt,
   IconCloudUpload,
   IconDevices,
@@ -23,9 +24,8 @@ import {
   IconLogin,
   IconScale,
   IconShieldCheck,
-  IconUserPlus,
   IconSparkles,
-  IconArrowRight,
+  IconUserPlus,
 } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -477,7 +477,8 @@ export function Component() {
                   left: 0,
                   right: 0,
                   bottom: 0,
-                  backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+                  backgroundImage:
+                    'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)',
                   backgroundSize: '32px 32px',
                   opacity: 0.3,
                 }}
