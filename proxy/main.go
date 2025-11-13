@@ -2,10 +2,12 @@ package main
 
 import (
 	"log"
+	"math"
 	"os"
 	"strings"
 	"time"
 
+	"github.com/dustin/go-humanize"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/compress"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -50,18 +52,21 @@ func main() {
 	sslKeyPath := getEnv("SSL_KEY_PATH", "/etc/nginx/ssl/sharehost.me.key")
 	domain := getEnv("DOMAIN", "sharehost.me")
 
+	const defaultBodyLimit = 100 * 1024 * 1024
+	bodyLimit := parseBodyLimit(getEnv("PROXY_BODY_LIMIT", "100mb"), defaultBodyLimit)
+
 	// Create Fiber app with custom config
 	app := fiber.New(fiber.Config{
-		ServerHeader:          "ShareHost",
-		AppName:               "ShareHost Proxy v1.0.0",
-		DisableStartupMessage: false,
-		BodyLimit:             100 * 1024 * 1024, // 100MB max body size
-		ReadTimeout:           60 * time.Second,
-		WriteTimeout:          60 * time.Second,
-		IdleTimeout:           120 * time.Second,
-		ProxyHeader:           fiber.HeaderXForwardedFor,
+		ServerHeader:            "ShareHost",
+		AppName:                 "ShareHost Proxy v1.0.0",
+		DisableStartupMessage:   false,
+		BodyLimit:               bodyLimit,
+		ReadTimeout:             60 * time.Second,
+		WriteTimeout:            60 * time.Second,
+		IdleTimeout:             120 * time.Second,
+		ProxyHeader:             fiber.HeaderXForwardedFor,
 		EnableTrustedProxyCheck: true,
-		TrustedProxies:        cloudflareIPRanges,
+		TrustedProxies:          cloudflareIPRanges,
 	})
 
 	// Middleware setup
@@ -69,9 +74,9 @@ func main() {
 
 	// Logger middleware
 	app.Use(logger.New(logger.Config{
-		Format: "[${time}] ${status} - ${method} ${path} - ${ip} - ${latency}\n",
+		Format:     "[${time}] ${status} - ${method} ${path} - ${ip} - ${latency}\n",
 		TimeFormat: "2006-01-02 15:04:05",
-		TimeZone: "UTC",
+		TimeZone:   "UTC",
 	}))
 
 	// CORS middleware
@@ -119,8 +124,8 @@ func main() {
 	// Health check endpoint
 	app.Get("/proxy/health", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{
-			"status": "ok",
-			"proxy": "fiber",
+			"status":  "ok",
+			"proxy":   "fiber",
 			"backend": backendURL,
 		})
 	})
@@ -151,6 +156,8 @@ func main() {
 
 		return nil
 	})
+
+	log.Printf("Proxy request body limit: %s (%d bytes)", humanize.Bytes(uint64(bodyLimit)), bodyLimit)
 
 	// Start HTTP server (for redirect or standalone)
 	if httpsEnabled {
@@ -196,4 +203,24 @@ func getEnv(key, defaultValue string) string {
 		return strings.TrimSpace(value)
 	}
 	return defaultValue
+}
+
+func parseBodyLimit(limitStr string, fallback int) int {
+	bytesValue, err := humanize.ParseBytes(limitStr)
+	if err != nil {
+		log.Printf("Invalid PROXY_BODY_LIMIT value %q, falling back to %d bytes: %v", limitStr, fallback, err)
+		return fallback
+	}
+
+	if bytesValue == 0 {
+		log.Printf("PROXY_BODY_LIMIT value %q resolved to 0 bytes, falling back to %d bytes", limitStr, fallback)
+		return fallback
+	}
+
+	if bytesValue > uint64(math.MaxInt) {
+		log.Printf("PROXY_BODY_LIMIT value %q exceeds max supported size, capping at %d bytes", limitStr, math.MaxInt)
+		return math.MaxInt
+	}
+
+	return int(bytesValue)
 }

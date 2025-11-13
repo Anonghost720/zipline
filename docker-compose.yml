@@ -58,6 +58,7 @@ services:
       - HTTP_PORT=80
       - HTTPS_PORT=443
       - DOMAIN=${DOMAIN:-sharehost.me}
+      - PROXY_BODY_LIMIT=${PROXY_BODY_LIMIT:-100mb}
       - SSL_CERT_PATH=/etc/nginx/ssl/sharehost.me.crt
       - SSL_KEY_PATH=/etc/nginx/ssl/sharehost.me.key
     depends_on:
