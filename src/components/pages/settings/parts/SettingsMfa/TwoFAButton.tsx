@@ -27,9 +27,9 @@ export default function TwoFAButton() {
 
   const [totpOpen, setTotpOpen] = useState(false);
   const {
-    data: twoData,
-    error: twoError,
-    isLoading: twoLoading,
+    data: mfaData,
+    error: mfaError,
+    isLoading: mfaLoading,
   } = useSWR<Extract<Response['/api/user/mfa/totp'], { secret: string; qrcode: string }>>(
     totpOpen && !user?.totpSecret ? '/api/user/mfa/totp' : null,
     null,
@@ -51,7 +51,7 @@ export default function TwoFAButton() {
       'POST',
       {
         code: pin,
-        secret: twoData!.secret,
+        secret: mfaData!.secret,
       },
     );
 
@@ -156,25 +156,20 @@ export default function TwoFAButton() {
               </Text>
 
               <Box pos='relative'>
-                {twoLoading && !twoError ? (
+                {mfaLoading && !mfaError ? (
                   <Box w={180} h={180}>
                     <LoadingOverlay visible pos='relative' />
                   </Box>
                 ) : (
                   <Center>
-                    <Image
-                      width={180}
-                      height={180}
-                      src={twoData?.qrcode}
-                      alt={'qr code ' + twoData?.secret}
-                    />
+                    <Image h={180} w={180} src={mfaData?.qrcode} alt={'qr code ' + mfaData?.secret} />
                   </Center>
                 )}
               </Box>
 
               <Text size='sm' c='dimmed'>
                 If you can&apos;t scan the QR code, you can manually enter the following code into your
-                authenticator app: <Code>{twoData?.secret ?? ''}</Code>
+                authenticator app: <Code>{mfaData?.secret ?? ''}</Code>
               </Text>
 
               <Text size='sm' c='dimmed'>

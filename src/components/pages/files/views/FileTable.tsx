@@ -34,9 +34,7 @@ import {
   IconDownload,
   IconExternalLink,
   IconFile,
-  IconGridPatternFilled,
   IconStar,
-  IconTableOptions,
   IconTrashFilled,
 } from '@tabler/icons-react';
 import { DataTable } from 'mantine-datatable';
@@ -175,11 +173,23 @@ function TagsFilter({
   );
 }
 
-export default function FileTable({ id }: { id?: string }) {
+export default function FileTable({
+  id,
+  tableEdit,
+  idSearch,
+}: {
+  id?: string;
+  tableEdit: {
+    open: boolean;
+    setOpen: (open: boolean) => void;
+  };
+  idSearch: {
+    open: boolean;
+    setOpen: (open: boolean) => void;
+  };
+}) {
   const clipboard = useClipboard();
   const warnDeletion = useSettingsStore((state) => state.settings.warnDeletion);
-
-  const [tableEditOpen, setTableEditOpen] = useState(false);
 
   const fields = useFileTableSettingsStore((state) => state.fields);
 
@@ -204,7 +214,6 @@ export default function FileTable({ id }: { id?: string }) {
   const [order, setOrder] = useState<'asc' | 'desc'>('desc');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  const [idSearchOpen, setIdSearchOpen] = useState(false);
   const [searchField, setSearchField] = useState<'name' | 'originalName' | 'type' | 'tags' | 'id'>('name');
   const [searchQuery, setSearchQuery] = useReducer(
     (state: ReducerQuery['state'], action: ReducerQuery['action']) => {
@@ -218,13 +227,13 @@ export default function FileTable({ id }: { id?: string }) {
   const [debouncedQuery, setDebouncedQuery] = useState(searchQuery);
 
   useEffect(() => {
-    if (idSearchOpen) return;
+    if (idSearch.open) return;
 
     setSearchQuery({
       field: 'id',
       query: '',
     });
-  }, [idSearchOpen]);
+  }, [idSearch.open]);
 
   useEffect(() => {
     const handler = setTimeout(() => setDebouncedQuery(searchQuery), 300);
@@ -379,6 +388,8 @@ export default function FileTable({ id }: { id?: string }) {
     }
   }, [searchField]);
 
+  const unfavoriteAll = selectedFiles.every((file) => file.favorite);
+
   return (
     <>
       <FileModal
@@ -387,35 +398,12 @@ export default function FileTable({ id }: { id?: string }) {
           if (!open) setSelectedFile(null);
         }}
         file={selectedFile}
+        user={id}
       />
 
-      <TableEditModal opened={tableEditOpen} onCLose={() => setTableEditOpen(false)} />
+      <TableEditModal opened={tableEdit.open} onCLose={() => tableEdit.setOpen(false)} />
 
       <Box>
-        <Group>
-          <Tooltip label='Table Options'>
-            <ActionIcon
-              variant='outline'
-              onClick={() => setTableEditOpen((open) => !open)}
-              style={{ position: 'relative', top: '-36.4px', left: '221px', margin: 0 }}
-            >
-              <IconTableOptions size='1rem' />
-            </ActionIcon>
-          </Tooltip>
-          <Tooltip label='Search by ID'>
-            <ActionIcon
-              variant='outline'
-              onClick={() => {
-                setIdSearchOpen((open) => !open);
-              }}
-              // lol if it works it works :shrug:
-              style={{ position: 'relative', top: '-36.4px', left: '221px', margin: 0 }}
-            >
-              <IconGridPatternFilled size='1rem' />
-            </ActionIcon>
-          </Tooltip>
-        </Group>
-
         <Collapse in={selectedFiles.length > 0}>
           <Paper withBorder p='sm' my='sm'>
             <Text size='sm' c='dimmed' mb='xs'>
@@ -442,48 +430,56 @@ export default function FileTable({ id }: { id?: string }) {
                   variant='outline'
                   color='yellow'
                   leftSection={<IconStar size='1rem' />}
-                  onClick={() => bulkFavorite(selectedFiles.map((x) => x.id))}
+                  onClick={() =>
+                    bulkFavorite(
+                      selectedFiles.map((x) => x.id),
+                      !unfavoriteAll,
+                    )
+                  }
                 >
-                  Favorite {selectedFiles.length} file{selectedFiles.length > 1 ? 's' : ''}
+                  {unfavoriteAll ? 'Unfavorite' : 'Favorite'} {selectedFiles.length} file
+                  {selectedFiles.length > 1 ? 's' : ''}
                 </Button>
 
-                <Combobox
-                  store={combobox}
-                  withinPortal={false}
-                  onOptionSubmit={(value) => handleAddFolder(value)}
-                >
-                  <Combobox.Target>
-                    <InputBase
-                      rightSection={<Combobox.Chevron />}
-                      value={folderSearch}
-                      onChange={(event) => {
-                        combobox.openDropdown();
-                        combobox.updateSelectedOptionIndex();
-                        setFolderSearch(event.currentTarget.value);
-                      }}
-                      onClick={() => combobox.openDropdown()}
-                      onFocus={() => combobox.openDropdown()}
-                      onBlur={() => {
-                        combobox.closeDropdown();
-                        setFolderSearch(folderSearch || '');
-                      }}
-                      placeholder='Add to folder...'
-                      rightSectionPointerEvents='none'
-                    />
-                  </Combobox.Target>
+                {!id && (
+                  <Combobox
+                    store={combobox}
+                    withinPortal={false}
+                    onOptionSubmit={(value) => handleAddFolder(value)}
+                  >
+                    <Combobox.Target>
+                      <InputBase
+                        rightSection={<Combobox.Chevron />}
+                        value={folderSearch}
+                        onChange={(event) => {
+                          combobox.openDropdown();
+                          combobox.updateSelectedOptionIndex();
+                          setFolderSearch(event.currentTarget.value);
+                        }}
+                        onClick={() => combobox.openDropdown()}
+                        onFocus={() => combobox.openDropdown()}
+                        onBlur={() => {
+                          combobox.closeDropdown();
+                          setFolderSearch(folderSearch || '');
+                        }}
+                        placeholder='Add to folder...'
+                        rightSectionPointerEvents='none'
+                      />
+                    </Combobox.Target>
 
-                  <Combobox.Dropdown>
-                    <Combobox.Options>
-                      {folders
-                        ?.filter((f) => f.name.toLowerCase().includes(folderSearch.toLowerCase().trim()))
-                        .map((f) => (
-                          <Combobox.Option value={f.id} key={f.id}>
-                            {f.name}
-                          </Combobox.Option>
-                        ))}
-                    </Combobox.Options>
-                  </Combobox.Dropdown>
-                </Combobox>
+                    <Combobox.Dropdown>
+                      <Combobox.Options>
+                        {folders
+                          ?.filter((f) => f.name.toLowerCase().includes(folderSearch.toLowerCase().trim()))
+                          .map((f) => (
+                            <Combobox.Option value={f.id} key={f.id}>
+                              {f.name}
+                            </Combobox.Option>
+                          ))}
+                      </Combobox.Options>
+                    </Combobox.Dropdown>
+                  </Combobox>
+                )}
               </Group>
 
               <Button
@@ -500,8 +496,8 @@ export default function FileTable({ id }: { id?: string }) {
           </Paper>
         </Collapse>
 
-        <Collapse in={idSearchOpen}>
-          <Paper withBorder p='sm' my='sm'>
+        <Collapse in={idSearch.open}>
+          <Paper withBorder p='sm' mt='sm'>
             <TextInput
               placeholder='Search by ID'
               value={searchQuery.id}
@@ -519,6 +515,7 @@ export default function FileTable({ id }: { id?: string }) {
 
         {/* @ts-ignore */}
         <DataTable
+          mt='xs'
           borderRadius='sm'
           withTableBorder
           minHeight={200}

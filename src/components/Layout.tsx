@@ -40,6 +40,7 @@ import {
   IconRefreshDot,
   IconSettingsFilled,
   IconShieldLockFilled,
+  IconStopwatch,
   IconTags,
   IconUpload,
   IconUsersGroup,
@@ -124,6 +125,12 @@ const navLinks: NavLinks[] = [
         active: (path: string) => path === '/dashboard/admin/settings',
         if: (user) => user?.role === 'SUPERADMIN',
         href: '/dashboard/admin/settings',
+      },
+      {
+        label: 'Actions',
+        icon: <IconStopwatch size='1rem' />,
+        active: (path: string) => path === '/dashboard/admin/actions',
+        href: '/dashboard/admin/actions',
       },
       {
         label: 'Users',

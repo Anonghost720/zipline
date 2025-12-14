@@ -16,6 +16,7 @@ import {
   IconShare,
   IconShareOff,
   IconTrashFilled,
+  IconZip,
 } from '@tabler/icons-react';
 import ViewFilesModal from '../ViewFilesModal';
 import EditFolderNameModal from '../EditFolderNameModal';
@@ -167,6 +168,14 @@ export default function FolderTableView() {
                       }}
                     >
                       <IconPencil size='1rem' />
+                    </ActionIcon>
+                  </Tooltip>
+                  <Tooltip label='Export folder as ZIP'>
+                    <ActionIcon
+                      color='blue'
+                      onClick={() => window.open(`/api/user/folders/${folder.id}/export`, '_blank')}
+                    >
+                      <IconZip size='1rem' />
                     </ActionIcon>
                   </Tooltip>
                   <Tooltip label='Delete Folder'>

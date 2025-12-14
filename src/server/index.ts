@@ -1,5 +1,6 @@
 import { bytes } from '@/lib/bytes';
 import { reloadSettings } from '@/lib/config';
+import { checkDbVars, REQUIRED_DB_VARS } from '@/lib/config/read/env';
 import { getDatasource } from '@/lib/datasource';
 import { prisma } from '@/lib/db';
 import { runMigrations } from '@/lib/db/migration';
@@ -19,7 +20,7 @@ import { fastifyRateLimit } from '@fastify/rate-limit';
 import { fastifySensible } from '@fastify/sensible';
 import { fastifyStatic } from '@fastify/static';
 import fastify from 'fastify';
-import { mkdir, readFile } from 'fs/promises';
+import { appendFile, mkdir, readFile, writeFile } from 'fs/promises';
 import ms, { StringValue } from 'ms';
 import { version } from '../../package.json';
 import { checkRateLimit } from './plugins/checkRateLimit';
@@ -46,8 +47,8 @@ async function main() {
   const argv = process.argv.slice(2);
   logger.info('starting sharehost', { mode: MODE, version: version, argv });
 
-  if (!process.env.DATABASE_URL) {
-    logger.error('DATABASE_URL not set, exiting...');
+  if (!checkDbVars()) {
+    logger.error(`either DATABASE_URL or all of [${REQUIRED_DB_VARS.join(', ')}] not set, exiting...`);
     process.exit(1);
   }
 
@@ -215,7 +216,7 @@ async function main() {
     }
   });
 
-  server.setErrorHandler((error, _, res) => {
+  server.setErrorHandler((error: { statusCode: number; message: string }, _, res) => {
     if (error.statusCode) {
       res.status(error.statusCode);
       res.send({ error: error.message, statusCode: error.statusCode });
@@ -290,6 +291,18 @@ async function main() {
   }
 
   tasks.start();
+
+  if (process.env.DEBUG_MONITOR_MEMORY === 'true') {
+    await writeFile('.memory.log', '', 'utf8');
+    setInterval(async () => {
+      const mu = process.memoryUsage();
+      const cpu = process.cpuUsage();
+
+      const entry = `${Math.floor(Date.now() / 1000)},${mu.rss},${mu.heapUsed},${mu.heapTotal},${mu.external},${mu.arrayBuffers},${cpu.system},${cpu.user}\n`;
+
+      await appendFile('.memory.log', entry, 'utf8');
+    }, 1000);
+  }
 }
 
 main();

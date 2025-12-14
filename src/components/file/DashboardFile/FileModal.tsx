@@ -29,6 +29,7 @@ import { showNotification } from '@mantine/notifications';
 import {
   Icon,
   IconBombFilled,
+  IconClipboardTypography,
   IconCopy,
   IconDeviceSdCard,
   IconDownload,
@@ -88,11 +89,13 @@ export default function FileModal({
   setOpen,
   file,
   reduce,
+  user,
 }: {
   open: boolean;
   setOpen: (open: boolean) => void;
   file?: File | null;
   reduce?: boolean;
+  user?: string;
 }) {
   const clipboard = useClipboard();
   const warnDeletion = useSettingsStore((state) => state.settings.warnDeletion);
@@ -226,7 +229,7 @@ export default function FileModal({
               )}
             </SimpleGrid>
 
-            {!reduce && (
+            {!reduce && !user && (
               <SimpleGrid cols={{ base: 1, md: 2 }} spacing='md' my='xs'>
                 <Box>
                   <Title order={4} mt='lg' mb='xs'>
@@ -234,15 +237,15 @@ export default function FileModal({
                   </Title>
                   <Combobox
                     zIndex={90000}
+                    withinPortal={false}
                     store={tagsCombobox}
                     onOptionSubmit={handleValueSelect}
-                    withinPortal={false}
                   >
                     <Combobox.DropdownTarget>
                       <PillsInput
                         onBlur={() => triggerSave()}
                         pointer
-                        onClick={() => tagsCombobox.toggleDropdown()}
+                        onClick={() => tagsCombobox.openDropdown()}
                       >
                         <Pill.Group>
                           {values.length > 0 ? (
@@ -254,9 +257,14 @@ export default function FileModal({
                           <Combobox.EventsTarget>
                             <PillsInput.Field
                               type='hidden'
+                              onFocus={() => tagsCombobox.openDropdown()}
                               onBlur={() => tagsCombobox.closeDropdown()}
                               onKeyDown={(event) => {
-                                if (event.key === 'Backspace') {
+                                if (
+                                  event.key === 'Backspace' &&
+                                  value.length > 0 &&
+                                  event.currentTarget.value === ''
+                                ) {
                                   event.preventDefault();
                                   handleValueRemove(value[value.length - 1]);
                                 }
@@ -285,9 +293,7 @@ export default function FileModal({
                             </Combobox.Option>
                           ))
                         ) : (
-                          <Combobox.Option value='no-tags' disabled>
-                            No tags found, create one outside of this menu.
-                          </Combobox.Option>
+                          <Combobox.Empty>No tags found, create one outside of this menu.</Combobox.Empty>
                         )}
                       </Combobox.Options>
                     </Combobox.Dropdown>
@@ -310,8 +316,8 @@ export default function FileModal({
                     </Button>
                   ) : (
                     <Combobox
-                      store={folderCombobox}
                       withinPortal={false}
+                      store={folderCombobox}
                       onOptionSubmit={(value) => handleAdd(value)}
                     >
                       <Combobox.Target>
@@ -397,6 +403,11 @@ export default function FileModal({
                   onClick={() => viewFile(file)}
                   tooltip='View file in a new tab'
                   color='blue'
+                />
+                <ActionButton
+                  Icon={IconClipboardTypography}
+                  onClick={() => copyFile(file, clipboard, true)}
+                  tooltip='Copy raw file link'
                 />
                 <ActionButton
                   Icon={IconCopy}

@@ -1,9 +1,10 @@
 import { ActionIcon, Button, CopyButton, Paper, ScrollArea, Text, useMantineTheme } from '@mantine/core';
-import { IconCheck, IconClipboardCopy, IconChevronDown, IconChevronUp } from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
+import { IconCheck, IconChevronDown, IconChevronUp, IconClipboardCopy } from '@tabler/icons-react';
+import type { HLJSApi } from 'highlight.js';
+import { useEffect, useMemo, useState } from 'react';
+import { FixedSizeList as List } from 'react-window';
 
 import './HighlightCode.theme.scss';
-import { type HLJSApi } from 'highlight.js';
 
 export default function HighlightCode({ language, code }: { language: string; code: string }) {
   const theme = useMantineTheme();
@@ -14,15 +15,56 @@ export default function HighlightCode({ language, code }: { language: string; co
     import('highlight.js').then((mod) => setHljs(mod.default || mod));
   }, []);
 
-  const lines = code.split('\n');
-  const lineNumbers = lines.map((_, i) => i + 1);
-  const displayLines = expanded ? lines : lines.slice(0, 50);
-  const displayLineNumbers = expanded ? lineNumbers : lineNumbers.slice(0, 50);
+  const lines = useMemo(() => code.split('\n'), [code]);
+  const visible = expanded ? lines.length : Math.min(lines.length, 50);
+  const expandable = lines.length > 50;
 
-  let lang = language;
-  if (!hljs || !hljs.getLanguage(lang)) {
-    lang = 'text';
-  }
+  const lang = useMemo(() => {
+    if (!hljs) return 'plaintext';
+    if (hljs.getLanguage(language)) return language;
+
+    return 'plaintext';
+  }, [hljs, language]);
+
+  const hlLines = useMemo(() => {
+    if (!hljs) return lines;
+
+    return lines.map(
+      (line) =>
+        hljs.highlight(line, {
+          language: lang,
+        }).value,
+    );
+  }, [lines, hljs, lang]);
+
+  const Row = ({ index, style }: { index: number; style: React.CSSProperties }) => (
+    <div
+      style={{
+        ...style,
+        display: 'flex',
+        alignItems: 'flex-start',
+        whiteSpace: 'pre',
+        fontFamily: 'monospace',
+        fontSize: '0.8rem',
+      }}
+    >
+      <Text
+        component='span'
+        c='dimmed'
+        mr='md'
+        style={{
+          userSelect: 'none',
+          width: 40,
+          textAlign: 'right',
+          flexShrink: 0,
+        }}
+      >
+        {index + 1}
+      </Text>
+
+      <code className='theme hljs' style={{ flex: 1 }} dangerouslySetInnerHTML={{ __html: hlLines[index] }} />
+    </div>
+  );
 
   return (
     <Paper withBorder p='xs' my='md' pos='relative'>
@@ -44,37 +86,17 @@ export default function HighlightCode({ language, code }: { language: string; co
         )}
       </CopyButton>
 
-      <ScrollArea type='auto' dir='ltr' offsetScrollbars={false}>
-        <pre style={{ margin: 0, whiteSpace: 'pre', overflowX: 'auto' }} className='theme'>
-          <code className='theme'>
-            {displayLines.map((line, i) => (
-              <div key={i}>
-                <Text
-                  component='span'
-                  size='sm'
-                  c='dimmed'
-                  mr='md'
-                  style={{ userSelect: 'none', fontFamily: 'monospace' }}
-                >
-                  {displayLineNumbers[i]}
-                </Text>
-                <span
-                  className='line'
-                  dangerouslySetInnerHTML={{
-                    __html: lang === 'none' || !hljs ? line : hljs.highlight(line, { language: lang }).value,
-                  }}
-                />
-              </div>
-            ))}
-          </code>
-        </pre>
+      <ScrollArea type='auto' offsetScrollbars={false} style={{ maxHeight: 400 }}>
+        <List height={400} width='100%' itemCount={visible} itemSize={20} overscanCount={10}>
+          {Row}
+        </List>
       </ScrollArea>
 
-      {lines.length > 50 && (
+      {expandable && (
         <Button
-          variant='outline'
+          variant='light'
           size='compact-sm'
-          onClick={() => setExpanded(!expanded)}
+          onClick={() => setExpanded((e) => !e)}
           leftSection={expanded ? <IconChevronUp size='1rem' /> : <IconChevronDown size='1rem' />}
           style={{ position: 'absolute', bottom: '0.5rem', right: '0.5rem' }}
         >

@@ -5,11 +5,12 @@ import { log } from '@/lib/logger';
 import { secondlyRatelimit } from '@/lib/ratelimits';
 import { userMiddleware } from '@/server/middleware/user';
 import fastifyPlugin from 'fastify-plugin';
-import { Zip, ZipPassThrough } from 'fflate';
+import archiver from 'archiver';
 import { createWriteStream } from 'fs';
 import { rm, stat } from 'fs/promises';
 import { join } from 'path';
 import { Export } from '@/prisma/client';
+import { bytes } from '@/lib/bytes';
 
 export type ApiUserExportResponse = {
   running?: boolean;
@@ -92,70 +93,29 @@ export default fastifyPlugin(
           size: '0',
         },
       });
-
       const writeStream = createWriteStream(exportPath);
-      const zip = new Zip();
 
-      const onBackpressure = (stream: any, outputStream: any, cb: any) => {
-        const runCb = () => {
-          cb(applyOutputBackpressure || backpressureBytes > backpressureThreshold);
-        };
+      const zip = archiver('zip', {
+        zlib: { level: 9 },
+      });
 
-        const backpressureThreshold = 65536;
-        const backpressure: number[] = [];
-        let backpressureBytes = 0;
-        const push = stream.push;
-        stream.push = (data: string | any[], final: any) => {
-          backpressure.push(data.length);
-          backpressureBytes += data.length;
-          runCb();
-          push.call(stream, data, final);
-        };
-        let ondata = stream.ondata;
-        const ondataPatched = (err: any, data: any, final: any) => {
-          ondata.call(stream, err, data, final);
-          backpressureBytes -= backpressure.shift()!;
-          runCb();
-        };
-        if (ondata) {
-          stream.ondata = ondataPatched;
-        } else {
-          Object.defineProperty(stream, 'ondata', {
-            get: () => ondataPatched,
-            set: (cb) => (ondata = cb),
-          });
+      zip.pipe(writeStream);
+
+      let totalSize = 0;
+      for (const file of files) {
+        const stream = await datasource.get(file.name);
+        if (!stream) {
+          logger.warn(`failed to get file ${file.name}`);
+          continue;
         }
 
-        let applyOutputBackpressure = false;
-        const write = outputStream.write;
-        outputStream.write = (data: any) => {
-          const outputNotFull = write.call(outputStream, data);
-          applyOutputBackpressure = !outputNotFull;
-          runCb();
-        };
-        outputStream.on('drain', () => {
-          applyOutputBackpressure = false;
-          runCb();
-        });
-      };
+        zip.append(stream, { name: file.name });
+        totalSize += file.size;
+        logger.debug('file added to zip', { name: file.name, size: file.size });
+      }
 
-      zip.ondata = async (err, data, final) => {
-        if (err) {
-          writeStream.close();
-          logger.debug('error while writing to zip', { err });
-          logger.error(`export for ${req.user.id} failed`);
-
-          await prisma.export.delete({ where: { id: exportDb.id } });
-
-          return;
-        }
-
-        writeStream.write(data);
-
-        if (!final) return;
-
-        writeStream.end();
-        logger.debug('exported', { path: exportPath, bytes: data.length });
+      writeStream.on('close', async () => {
+        logger.debug('exported', { path: exportPath, bytes: zip.pointer() });
         logger.info(`export for ${req.user.id} finished at ${exportPath}`);
 
         await prisma.export.update({
@@ -165,37 +125,15 @@ export default fastifyPlugin(
             size: (await stat(exportPath)).size.toString(),
           },
         });
-      };
+      });
 
-      for (let i = 0; i !== files.length; ++i) {
-        const file = files[i];
+      zip.on('error', (err) => {
+        logger.error('export zip error', { err, exportId: exportDb.id });
+      });
 
-        const stream = await datasource.get(file.name);
-        if (!stream) {
-          logger.warn(`failed to get file ${file.name}`);
-          continue;
-        }
+      zip.finalize();
 
-        const passThrough = new ZipPassThrough(file.name);
-        zip.add(passThrough);
-
-        onBackpressure(passThrough, stream, (applyBackpressure: boolean) => {
-          if (applyBackpressure) {
-            stream.pause();
-          } else if (stream.isPaused()) {
-            stream.resume();
-          }
-        });
-        stream.on('data', (c) => passThrough.push(c));
-        stream.on('end', () => {
-          passThrough.push(new Uint8Array(0), true);
-          logger.debug(`file ${i + 1}/${files.length} added to zip`, { name: file.name });
-        });
-      }
-
-      zip.end();
-
-      logger.info(`export for ${req.user.id} started`);
+      logger.info(`export for ${req.user.id} started`, { totalSize: bytes(totalSize) });
 
       return res.send({ running: true });
     });

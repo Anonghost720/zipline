@@ -28,11 +28,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env
-.env.local
-.env.development
-.env.production
-!.env.example
+.env*
 
 # vercel
 .vercel
@@ -52,13 +48,5 @@ yarn-error.log*
 uploads*/
 *.crt
 *.key
-
-# docker setup
-get-docker.sh
-
-# personal documentation
-SETUP_COMPLETE.md
 src/prisma
-
-# mysql
-*.sql
+.memory.log*
